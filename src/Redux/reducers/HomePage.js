@@ -1,4 +1,4 @@
-import { GET_MOVIE_REQUEST, GET_MOVIE_ERROR, GET_MOVIE_SUCCESS, GET_MOVIE_GENRE, GET_BY_GENRE } from '../types/HomePage';
+import { GET_MOVIE_REQUEST, GET_MOVIE_ERROR, GET_MOVIE_SUCCESS, GET_MOVIE_GENRE, GET_BY_GENRE, GET_DETAIL_MOVIE } from '../types/HomePage';
 
 let initialState = {
     movies: [],
@@ -6,6 +6,7 @@ let initialState = {
     isError: false,
     genres: [],
     id: 0,
+    movie: [],
 }
 
 const homePageReducer = (state = initialState, action) => {
@@ -29,7 +30,6 @@ const homePageReducer = (state = initialState, action) => {
             ...state,
             isLoading: false,
             isError: true,
-            error: action.payload
         }
     }
     if (action.type === GET_MOVIE_GENRE) {
@@ -43,6 +43,12 @@ const homePageReducer = (state = initialState, action) => {
             ...state,
             movies: action.payload,
             id: action.payload
+        }
+    }
+    if (action.type === GET_DETAIL_MOVIE) {
+        return {
+            ...state,
+            movie: action.payload,
         }
     }
     return state;

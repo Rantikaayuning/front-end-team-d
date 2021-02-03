@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { getGenreList, getMovies, getMovieByGenre } from '../Redux/actions/HomePage';
 import { imgUrl, items } from '../Utils/constants';
@@ -6,7 +7,6 @@ import { UncontrolledCarousel } from 'reactstrap';
 import { Card, CardBody, CardImg, Col, Container, Row } from "reactstrap";
 import { StyledGenre, Title, GroupButton } from '../Assets/Styles/styled';
 import PaginationMovie from '../Components/Pagination';
-import '../Assets/Styles/HomePage.css';
 
 const HomePage = ({getGenreList, getMovieByGenre, getMovies, movies, genres, id}) => {
 
@@ -20,7 +20,15 @@ const HomePage = ({getGenreList, getMovieByGenre, getMovies, movies, genres, id}
 
     return (
     <>
-      <UncontrolledCarousel items={items} className='carousel'/>
+    <style>
+        {
+          `.carousel img{
+              max-width: 100%;
+              height: 450px;
+            }`
+        }
+      </style>
+      <UncontrolledCarousel className='carousel' items={items} style={{width: '100%', height: '400px'}}/>
       <br />
       <StyledGenre>
         <p>Browse by Category</p>
@@ -34,7 +42,11 @@ const HomePage = ({getGenreList, getMovieByGenre, getMovies, movies, genres, id}
         <p></p>
         <Row >
           {movies !== 0 ? movies.map((movie) => (
-              <Col md={3} key={movie.id} >
+                <Col md={3} key={movie.id} >
+                <Link
+                  to={`/detail-movie/${movie.id}`}
+                  style={{ textDecoration: "none", color: "black"}}
+                >
                   <Card style={{marginBottom: "20px"}}>
                     <CardImg src={`${imgUrl}${movie.poster_path}`} />
                     <CardBody>
@@ -42,6 +54,7 @@ const HomePage = ({getGenreList, getMovieByGenre, getMovies, movies, genres, id}
                     <p>{movie.release_date}</p>
                     </CardBody>
                   </Card>
+                  </Link>
               </Col>
               )) : ""}
         </Row>

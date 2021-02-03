@@ -5,6 +5,7 @@ import imgApp from "../Assets/Images/appstore.png";
 import imgFb from "../Assets/Images/face.png";
 import imgPin from "../Assets/Images/pinter.png";
 import imgIg from "../Assets/Images/instagram.png";
+
 export default function Footer() {
   return (
     <div className="footer">
@@ -39,7 +40,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="copyright">
-        Copyright &copy; 2000-202 MilanTv. All Raight Reserved
+        <u>Copyright &copy; 2000-202 MilanTV. All Right Reserved</u>
       </div>
     </div>
   );

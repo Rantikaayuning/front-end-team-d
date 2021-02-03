@@ -1,9 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
-
-import App from "./App";
-import "bootstrap/dist/css/bootstrap.min.css";
-import reportWebVitals from "./reportWebVitals";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import './index.css';
+import App from './App';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import reportWebVitals from './reportWebVitals';
+import store from './Redux/store';
 
 ReactDOM.render(
   <React.StrictMode>

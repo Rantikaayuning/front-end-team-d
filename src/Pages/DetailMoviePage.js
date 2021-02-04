@@ -2,21 +2,21 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { TabContent, TabPane, Nav, NavItem, NavLink, Button, Row, Col, Jumbotron, Container } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Button, Row, Col, Jumbotron, Container, Media } from 'reactstrap';
 import classnames from 'classnames';
 
 import { getDetailMovieById, getReviewMovieById } from "../Redux/actions/HomePage";
 import { imgUrl } from "../Utils/constants";
+import "../Assets/Styles/DetailPage.css"
 
-const DetailMoviePage = ({ movie, getDetailMovieById, getReviewMovieById }) => {
+const DetailMoviePage = ({ movie, review, getDetailMovieById, getReviewMovieById }) => {
   const { id } = useParams();
 
   useEffect(() => {
     getDetailMovieById(id);
-  }, [])
-  useEffect(() => {
     getReviewMovieById(id);
   }, [])
+
 
   const [activeTab, setActiveTab] = useState('1');
 
@@ -52,6 +52,7 @@ const DetailMoviePage = ({ movie, getDetailMovieById, getReviewMovieById }) => {
       </Jumbotron>
 
       <Container>
+
         {/* Tab Detail */}
         <Nav tabs>
           <NavItem>
@@ -81,6 +82,7 @@ const DetailMoviePage = ({ movie, getDetailMovieById, getReviewMovieById }) => {
         </Nav>
 
         <TabContent activeTab={activeTab}>
+
           {/* Overview */}
           <TabPane tabId="1">
             <Row className="my-4">
@@ -124,12 +126,49 @@ const DetailMoviePage = ({ movie, getDetailMovieById, getReviewMovieById }) => {
               </Col>
             </Row>
           </TabPane>
+
+          {/* Review */}
           <TabPane tabId="3">
-            <Row className="my-4">
-              <Col sm="12">
-                <h3>{movie.content}</h3>
-              </Col>
-            </Row>
+            <div className="mt-3 detail-page-content">
+
+              <Media className="mt-1">
+                <Media className="mr-3" left middle href="#">
+                  <img
+                    className="img-card-review"
+                    src="https://www.themoviedb.org/t/p/w138_and_h175_face/amOshiwsbyIyvkhm9QK48xuafyH.jpg"
+                    alt="Generic placeholder"
+                  />
+                </Media>
+                <Media body>
+                  <Media heading>rate</Media>
+                  <textarea
+                    className="form-control"
+                    placeholder="leave comment here"
+                  ></textarea>
+                </Media>
+              </Media>
+
+              <div className="mt-4">
+                {review !== 0 ? review.map((review) => (
+                  <div sm="12" key={review.id}>
+                    <Media className="mt-3">
+                      <Media className="mr-3" left middle href="#">
+                        <img
+                          className="img-card-review"
+                          src={""}
+                          alt="Generic placeholder"
+                        />
+                      </Media>
+                      <Media body>
+                        <Media heading>{review.author}</Media>
+                        {review.content}
+                      </Media>
+                    </Media>
+                  </div>
+                )) : ""}
+
+              </div>
+            </div>
           </TabPane>
 
         </TabContent>
@@ -141,7 +180,7 @@ const DetailMoviePage = ({ movie, getDetailMovieById, getReviewMovieById }) => {
 const mapStateToProps = (state) => {
   return {
     movie: state.homePage.movie,
-    id: state.homePage.id
+    review: state.homePage.review
   };
 };
 

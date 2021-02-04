@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Modal from "react-modal";
 import Images from "../Assets/Images/brand-logo.png";
+import { StyledLogin } from "../Assets/Styles/styled";
 import "../Assets/Styles/loginModal.css";
 import "../Assets/Styles/Form.css";
 

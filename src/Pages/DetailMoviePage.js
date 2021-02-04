@@ -51,6 +51,7 @@ const DetailMoviePage = ({ movie, review, getDetailMovieById, getReviewMovieById
       </Jumbotron>
 
       <Container>
+
         {/* Tab Detail */}
         <Nav tabs>
           <NavItem>
@@ -80,6 +81,7 @@ const DetailMoviePage = ({ movie, review, getDetailMovieById, getReviewMovieById
         </Nav>
 
         <TabContent activeTab={activeTab}>
+
           {/* Overview */}
           <TabPane tabId="1">
             <Row className="my-4">
@@ -124,12 +126,15 @@ const DetailMoviePage = ({ movie, review, getDetailMovieById, getReviewMovieById
             </Row>
           </TabPane>
 
-
+          {/* Review */}
           <TabPane tabId="3">
             <Row className="my-4">
-              <Col sm="12">
-                <h3>{review.content}</h3>
-              </Col>
+              {review !== 0 ? review.map((review) => (
+                <Col sm="12" key={review.id}>
+                  <p className="text-justify">{review.content}</p>
+                </Col>
+              )) : ""}
+
             </Row>
           </TabPane>
 

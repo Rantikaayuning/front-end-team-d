@@ -3,7 +3,7 @@ import {
   getMovieSuccess,
   GET_MOVIE_GENRE,
   GET_BY_GENRE,
-  GET_DETAIL_MOVIE, GET_REVIEW_MOVIE
+  GET_DETAIL_MOVIE, GET_REVIEW_MOVIE, GET_CAST_MOVIE
 } from "../types/HomePage";
 import axios from "axios";
 import {
@@ -66,6 +66,17 @@ export const getReviewMovieById = (id) => {
       dispatch({
         type: GET_REVIEW_MOVIE,
         payload: res.data.results,
+      });
+    });
+  };
+};
+
+export const getCastMovieById = (id) => {
+  return (dispatch) => {
+    axios.get(`${movieUrl}movie/${id}/credits?${apiKey}&language=en-US&`).then((res) => {
+      dispatch({
+        type: GET_CAST_MOVIE,
+        payload: res.data.cast,
       });
     });
   };

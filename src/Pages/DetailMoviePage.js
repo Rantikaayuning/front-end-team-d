@@ -1,22 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
+import ReactStars from "react-rating-stars-component"
 
 import { TabContent, TabPane, Nav, NavItem, NavLink, Button, Row, Col, Jumbotron, Container, Media } from 'reactstrap';
 import classnames from 'classnames';
 
-import { getDetailMovieById, getReviewMovieById } from "../Redux/actions/HomePage";
+import { getDetailMovieById, getReviewMovieById, getCastMovieById } from "../Redux/actions/HomePage";
 import { imgUrl } from "../Utils/constants";
 import "../Assets/Styles/DetailPage.css"
 
-const DetailMoviePage = ({ movie, review, getDetailMovieById, getReviewMovieById }) => {
+const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMovieById, getCastMovieById }) => {
   const { id } = useParams();
 
   useEffect(() => {
     getDetailMovieById(id);
     getReviewMovieById(id);
+    getCastMovieById(id);
   }, [])
 
+  const renderImg = (img) => {
+    let rendered =
+      "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png";
+
+    if (img) {
+      if (img.substring(1, 5) === "http") {
+        rendered = img.substring(1);
+      } else {
+        rendered = `${imgUrl}${img}`;
+      }
+    }
+
+    return rendered;
+  };
 
   const [activeTab, setActiveTab] = useState('1');
 
@@ -33,12 +49,15 @@ const DetailMoviePage = ({ movie, review, getDetailMovieById, getReviewMovieById
           backgroundSize: "cover",
         }}
       >
-        <img src="" alt="" />
         <Container>
 
           <div className="text-white">
             <h1>{movie.title}</h1>
-            <span>{movie.vote_average}/10</span>{" "}
+            <ReactStars
+              size={24}
+              value={movie.vote_average / 2}
+              edit={false}
+              isHalf={true} />
             <span>{movie.vote_count} votes</span>
             <br /> <br />
             <p className="lead">{movie.tagline}</p>
@@ -113,29 +132,35 @@ const DetailMoviePage = ({ movie, review, getDetailMovieById, getReviewMovieById
 
           {/* Character */}
           <TabPane tabId="2">
-            <Row className="my-4">
-              <Col sm="12">
-                <span className="mx-2">
-                  <img
-                    className="img-card-character"
-                    src="https://www.themoviedb.org/t/p/w138_and_h175_face/amOshiwsbyIyvkhm9QK48xuafyH.jpg"
-                    alt="character"
-                  />
-                  <p className="">Character Name</p>
-                </span>
-              </Col>
-            </Row>
+            <div className="d-flex flex-wrap mt-3">
+              {cast !== 0 ? cast.map((cast) => (
+                <div className="mr-1 text-center" >
+                  <div sm="12">
+                    <img
+                      className="img-card-character"
+                      src={renderImg(cast.profile_path)}
+                      alt="character"
+                    />
+                    <div className="name-cast">
+
+                      <p>{cast.name}</p>
+                    </div>
+                  </div>
+                </div>
+
+              )) : ""}
+            </div>
           </TabPane>
 
           {/* Review */}
-          <TabPane tabId="3">
+          < TabPane tabId="3" >
             <div className="mt-3 detail-page-content">
 
               <Media className="mt-1">
-                <Media className="mr-3" left middle href="#">
+                <Media className="mr-3" left middle >
                   <img
                     className="img-card-review"
-                    src="https://www.themoviedb.org/t/p/w138_and_h175_face/amOshiwsbyIyvkhm9QK48xuafyH.jpg"
+                    src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
                     alt="Generic placeholder"
                   />
                 </Media>
@@ -151,17 +176,23 @@ const DetailMoviePage = ({ movie, review, getDetailMovieById, getReviewMovieById
               <div className="mt-4">
                 {review !== 0 ? review.map((review) => (
                   <div sm="12" key={review.id}>
-                    <Media className="mt-3">
-                      <Media className="mr-3" left middle href="#">
+                    <Media className="my-3">
+                      <Media className="mr-3" left middle >
                         <img
                           className="img-card-review"
-                          src={""}
+                          src={renderImg(review.author_details.avatar_path)}
                           alt="Generic placeholder"
                         />
                       </Media>
                       <Media body>
-                        <Media heading>{review.author}</Media>
-                        {review.content}
+                        <h4>{review.author}</h4>
+                        <ReactStars
+                          size={18}
+                          value={review.author_details.rating / 2}
+                          edit={false}
+                          isHalf={true} />
+                        <div>{review.author_details.rating}</div>
+                        <p>{review.content.slice(0, 450)} ...</p>
                       </Media>
                     </Media>
                   </div>
@@ -180,7 +211,8 @@ const DetailMoviePage = ({ movie, review, getDetailMovieById, getReviewMovieById
 const mapStateToProps = (state) => {
   return {
     movie: state.homePage.movie,
-    review: state.homePage.review
+    review: state.homePage.review,
+    cast: state.homePage.cast
   };
 };
 
@@ -188,6 +220,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getReviewMovieById: (id) => dispatch(getReviewMovieById(id)),
     getDetailMovieById: (id) => dispatch(getDetailMovieById(id)),
+    getCastMovieById: (id) => dispatch(getCastMovieById(id)),
   };
 }
 

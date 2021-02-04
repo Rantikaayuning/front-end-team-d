@@ -5,6 +5,8 @@ export const GET_MOVIE_GENRE = "GET_MOVIE_GENRE";
 export const GET_BY_GENRE = "GET_BY_GENRE";
 export const GET_DETAIL_MOVIE = "GET_DETAIL_MOVIE";
 export const GET_REVIEW_MOVIE = "GET_REVIEW_MOVIE";
+export const GET_CAST_MOVIE = "GET_CAST_MOVIE";
+
 
 export const getMovieReq = () => {
     return {
@@ -49,6 +51,13 @@ export const getDetailMovie = (payload) => {
 export const getReviewMovie = (payload) => {
     return {
         type: GET_REVIEW_MOVIE,
+        payload,
+    };
+};
+
+export const getCastMovie = (payload) => {
+    return {
+        type: GET_CAST_MOVIE,
         payload,
     };
 };

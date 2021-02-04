@@ -4,7 +4,7 @@ import {
     GET_MOVIE_SUCCESS,
     GET_MOVIE_GENRE,
     GET_BY_GENRE,
-    GET_DETAIL_MOVIE, GET_REVIEW_MOVIE
+    GET_DETAIL_MOVIE, GET_REVIEW_MOVIE, GET_CAST_MOVIE
 } from "../types/HomePage";
 
 let initialState = {
@@ -14,7 +14,8 @@ let initialState = {
     genres: [],
     id: 0,
     movie: [],
-    review: []
+    review: [],
+    cast: []
 };
 
 const homePageReducer = (state = initialState, action) => {
@@ -64,6 +65,13 @@ const homePageReducer = (state = initialState, action) => {
         return {
             ...state,
             review: action.payload,
+        };
+    }
+
+    if (action.type === GET_CAST_MOVIE) {
+        return {
+            ...state,
+            cast: action.payload,
         };
     }
     return state;

@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { Jumbotron, Container, Button } from "reactstrap";
-import { getDetailMovieById } from '../Redux/actions/HomePage';
+import { getDetailMovieById } from "../Redux/actions/HomePage";
 import { imgUrl } from "../Utils/constants";
 
-const DetailMoviePage = ({movie, getDetailMovieById}) => {
+const DetailMoviePage = ({ movie, getDetailMovieById }) => {
   const { id } = useParams();
 
   useEffect(() => {
@@ -29,7 +29,6 @@ const DetailMoviePage = ({movie, getDetailMovieById}) => {
           <h1 className="display-3">{movie.title}</h1>
           <p className="lead">Popularity : {movie.popularity}</p>
           <hr className="my-2" />
-          <p>{movie.overview}</p>
         </Jumbotron>
         <Container>
           <div>
@@ -47,23 +46,21 @@ const DetailMoviePage = ({movie, getDetailMovieById}) => {
             <h4>Synopsys</h4>
             <p>{movie.overview}</p>
           </div>
-          <div >
+          <div>
             <h4>Detail Movie</h4>
-            <ul style={{listStyle: 'none'}}>
-            <li>
-              <span >Release Date</span> :{" "}
-              {movie.release_date}
-            </li>
-            <li>
-              <span >Tagline</span> : {movie.tagline}
-            </li>
-            <li>
-              <span >Status</span> : {movie.status}
-            </li>
-            <li>
-              <span >Vote Average</span> :{" "}
-              {movie.vote_average}
-            </li>
+            <ul style={{ listStyle: "none" }}>
+              <li>
+                <span>Release Date</span> : {movie.release_date}
+              </li>
+              <li>
+                <span>Tagline</span> : {movie.tagline}
+              </li>
+              <li>
+                <span>Status</span> : {movie.status}
+              </li>
+              <li>
+                <span>Vote Average</span> : {movie.vote_average}
+              </li>
             </ul>
           </div>
         </Container>
@@ -71,7 +68,7 @@ const DetailMoviePage = ({movie, getDetailMovieById}) => {
       </div>
     </div>
   );
-}
+};
 
 const mapStateToProps = (state) => {
   return {

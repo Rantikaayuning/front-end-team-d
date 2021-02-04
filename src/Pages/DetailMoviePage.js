@@ -155,7 +155,7 @@ const DetailMoviePage = ({ movie, review, getDetailMovieById, getReviewMovieById
                       <Media className="mr-3" left middle href="#">
                         <img
                           className="img-card-review"
-                          src={review.author_details.avatar_path}
+                          src={""}
                           alt="Generic placeholder"
                         />
                       </Media>

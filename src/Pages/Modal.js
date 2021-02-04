@@ -45,8 +45,8 @@ function SignIn() {
         <div className="home__login">
           <img src={Images} />
           <form className="home__form" onSubmit={handleLogin}>
-            <div>Email</div>
-            <input type="email" placeholder="" />
+            <div>Username</div>
+            <input type="text" placeholder="" />
             <div>Password</div>
             <input type="password" placeholder="" />
 
@@ -73,7 +73,7 @@ function SignIn() {
         <div className="home__signup">
           <img src={Images} />
           <form className="home__signup__form" onSubmit={handleLogin}>
-            <div>Full Name</div>
+            <div>Username</div>
             <input type="text" placeholder="" />
 
             <div>Email</div>

@@ -65,7 +65,7 @@ export const getReviewMovieById = (id) => {
     axios.get(`${movieUrl}movie/${id}/reviews?${apiKey}&language=en-US&`).then((res) => {
       dispatch({
         type: GET_REVIEW_MOVIE,
-        payload: res.data,
+        payload: res.data.results,
       });
     });
   };

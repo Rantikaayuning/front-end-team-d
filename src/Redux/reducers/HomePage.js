@@ -14,6 +14,7 @@ let initialState = {
     genres: [],
     id: 0,
     movie: [],
+    review: []
 };
 
 const homePageReducer = (state = initialState, action) => {

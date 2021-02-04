@@ -8,15 +8,14 @@ import classnames from 'classnames';
 import { getDetailMovieById, getReviewMovieById } from "../Redux/actions/HomePage";
 import { imgUrl } from "../Utils/constants";
 
-const DetailMoviePage = ({ movie, getDetailMovieById, getReviewMovieById }) => {
+const DetailMoviePage = ({ movie, review, getDetailMovieById, getReviewMovieById }) => {
   const { id } = useParams();
 
   useEffect(() => {
     getDetailMovieById(id);
-  }, [])
-  useEffect(() => {
     getReviewMovieById(id);
   }, [])
+
 
   const [activeTab, setActiveTab] = useState('1');
 
@@ -124,10 +123,12 @@ const DetailMoviePage = ({ movie, getDetailMovieById, getReviewMovieById }) => {
               </Col>
             </Row>
           </TabPane>
+
+
           <TabPane tabId="3">
             <Row className="my-4">
               <Col sm="12">
-                <h3>{movie.content}</h3>
+                <h3>{review.content}</h3>
               </Col>
             </Row>
           </TabPane>
@@ -141,7 +142,7 @@ const DetailMoviePage = ({ movie, getDetailMovieById, getReviewMovieById }) => {
 const mapStateToProps = (state) => {
   return {
     movie: state.homePage.movie,
-    id: state.homePage.id
+    review: state.homePage.review
   };
 };
 

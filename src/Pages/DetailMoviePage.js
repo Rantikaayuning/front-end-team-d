@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { TabContent, TabPane, Nav, NavItem, NavLink, Button, Row, Col, Jumbotron, Container } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Button, Row, Col, Jumbotron, Container, Media } from 'reactstrap';
 import classnames from 'classnames';
 
 import { getDetailMovieById, getReviewMovieById } from "../Redux/actions/HomePage";
 import { imgUrl } from "../Utils/constants";
+import "../Assets/Styles/DetailPage.css"
 
 const DetailMoviePage = ({ movie, review, getDetailMovieById, getReviewMovieById }) => {
   const { id } = useParams();
@@ -128,14 +129,46 @@ const DetailMoviePage = ({ movie, review, getDetailMovieById, getReviewMovieById
 
           {/* Review */}
           <TabPane tabId="3">
-            <Row className="my-4">
-              {review !== 0 ? review.map((review) => (
-                <Col sm="12" key={review.id}>
-                  <p className="text-justify">{review.content}</p>
-                </Col>
-              )) : ""}
+            <div className="mt-3 detail-page-content">
 
-            </Row>
+              <Media className="mt-1">
+                <Media className="mr-3" left middle href="#">
+                  <img
+                    className="img-card-review"
+                    src="https://www.themoviedb.org/t/p/w138_and_h175_face/amOshiwsbyIyvkhm9QK48xuafyH.jpg"
+                    alt="Generic placeholder"
+                  />
+                </Media>
+                <Media body>
+                  <Media heading>rate</Media>
+                  <textarea
+                    className="form-control"
+                    placeholder="leave comment here"
+                  ></textarea>
+                </Media>
+              </Media>
+
+              <div className="mt-4">
+                {review !== 0 ? review.map((review) => (
+                  <div sm="12" key={review.id}>
+                    <Media className="mt-3">
+                      <Media className="mr-3" left middle href="#">
+                        <img
+                          className="img-card-review"
+                          src={review.author_details.avatar_path}
+                          alt="Generic placeholder"
+                        />
+                      </Media>
+                      <Media body>
+                        <Media heading>{review.author}</Media>
+                        {review.content}
+                      </Media>
+                    </Media>
+                  </div>
+                )) : ""}
+
+              </div>
+            </div>
           </TabPane>
 
         </TabContent>

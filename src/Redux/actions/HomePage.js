@@ -6,7 +6,7 @@ import {
   GET_DETAIL_MOVIE,
   GET_MOVIE_SEARCH,
   GET_REVIEW_MOVIE,
-  GET_CAST_MOVIE 
+  GET_CAST_MOVIE
 } from '../types/HomePage';
 import axios from 'axios';
 import {
@@ -14,17 +14,17 @@ import {
   nowPlaying,
   genreListUrl,
   apiKey,
-} from "../../Utils/constants";
+} from "../../utils/constants";
 
 export const getMovies = (page = 1) => {
   return (dispatch) => {
     dispatch(getMovieReq);
     return axios
-    .get(`${movieUrl}${nowPlaying}&page=${page}`)
-    .then(response => {
-      const movies = response.data.results
-      dispatch(getMovieSuccess(movies))          
-    })
+      .get(`${movieUrl}${nowPlaying}&page=${page}`)
+      .then(response => {
+        const movies = response.data.results
+        dispatch(getMovieSuccess(movies))
+      })
   };
 };
 
@@ -74,36 +74,36 @@ export const getSearchValue = (value) => {
 export const getDetailMovieById = (id) => {
   return (dispatch) => {
     axios.get(`${movieUrl}movie/${id}?${apiKey}&language=en-US&append_to_response=`)
-    .then((res) => {
-      dispatch({
-        type: GET_DETAIL_MOVIE,
-        payload: res.data,
+      .then((res) => {
+        dispatch({
+          type: GET_DETAIL_MOVIE,
+          payload: res.data,
+        });
       });
-    });
   };
 };
 
 export const getReviewMovieById = (id) => {
   return (dispatch) => {
     axios.get(`${movieUrl}movie/${id}/reviews?${apiKey}&language=en-US&`)
-    .then((res) => {
-      dispatch({
-        type: GET_REVIEW_MOVIE,
-        payload: res.data.results,
+      .then((res) => {
+        dispatch({
+          type: GET_REVIEW_MOVIE,
+          payload: res.data.results,
+        });
       });
-    });
   };
 };
 
 export const getCastMovieById = (id) => {
   return (dispatch) => {
     axios.get(`${movieUrl}movie/${id}/credits?${apiKey}&language=en-US&`)
-    .then((res) => {
-      dispatch({
-        type: GET_CAST_MOVIE,
-        payload: res.data.cast,
+      .then((res) => {
+        dispatch({
+          type: GET_CAST_MOVIE,
+          payload: res.data.cast,
+        });
       });
-    });
   };
 };
 

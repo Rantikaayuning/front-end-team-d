@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { getGenreList, getMovies, getMovieByGenre } from '../Redux/actions/HomePage';
-import { imgUrl, items } from '../Utils/constants';
+import { imgUrl, items } from '../utils/constants';
 import { Spinner, CardBody, Col, Container, Row, UncontrolledCarousel } from "reactstrap";
 import { StyledGenre, Title, GroupButton, StyledCard, StyledImage, StyledP } from '../assets/styles/styled';
 import PaginationMovie from '../Components/Pagination';
@@ -28,7 +28,7 @@ const HomePage = ({ getGenreList, getMovieByGenre, getMovies, movies, genres }) 
             }`
         }
       </style>
-      <UncontrolledCarousel className='carousel' items={items} items={items} style={{ width: '100%', height: '400px' }} />
+      <UncontrolledCarousel className='carousel' items={items} style={{ width: '100%', height: '400px' }} />
       <br />
       <StyledGenre>
         <p>Browse by Category</p>

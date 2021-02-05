@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { ButtonToolbar, Button, ButtonGroup, } from 'reactstrap';
+import { ButtonToolbar, Button, ButtonGroup } from 'reactstrap';
 import { StyledNavbar } from '../assets/styles/styled';
 import { getMovies } from '../Redux/actions/HomePage';
 

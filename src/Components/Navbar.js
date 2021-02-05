@@ -1,5 +1,4 @@
 import BrandLogo from "../Assets/Images/brand-logo.png";
-import "../Assets/Styles/NavbarStyle.css";
 import SignIn from "../Pages/Modal.js";
 import { Link } from "react-router-dom";
 import { StyledNavbar, StyledImg, StyledInput } from "../Assets/Styles/styled";

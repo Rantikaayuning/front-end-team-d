@@ -7,17 +7,17 @@ export const moviebyGenreUrl = 'https://api.themoviedb.org/3/movie/popular?api_k
 
 export const items = [
     {
-      src: 'https://image.tmdb.org/t/p/w1280/lOSdUkGQmbAl5JQ3QoHqBZUbZhC.jpg',
+      src: 'https://image.tmdb.org/t/p/w1280/kf456ZqeC45XTvo6W9pW5clYKfQ.jpg',
       altText: 'Slide 1',
       key: '1'
     },
     {
-      src: 'https://image.tmdb.org/t/p/w1280/srYya1ZlI97Au4jUYAktDe3avyA.jpg',
+      src: 'https://image.tmdb.org/t/p/w1280/h9DIlghaiTxbQbt1FIwKNbQvEL.jpg',
       altText: 'Slide 2',
       key: '2'
     },
     {
-      src: 'https://image.tmdb.org/t/p/w1280/3ombg55JQiIpoPnXYb2oYdr6DtP.jpg',
+      src: 'https://image.tmdb.org/t/p/w1280/cjaOSjsjV6cl3uXdJqimktT880L.jpg',
       altText: 'Slide 3',
       key: '3'
     }

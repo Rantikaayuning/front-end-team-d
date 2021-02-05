@@ -4,6 +4,8 @@ import HomePage from './Pages/HomePage';
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import DetailMoviePage from './Pages/DetailMoviePage';
+import UserProfilePage from './Pages/UserProfilePage';
+import UserSettingPage from './Pages/UserSettingPage';
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
       <Switch>
         <Route exact path='/' component={HomePage}/>
         <Route exact path='/detail-movie/:id' component={DetailMoviePage}/>
+        <Route exact path='/user-profile-page' component={UserProfilePage}/>
+        <Route exact path='/user-setting-page' component={UserSettingPage}/>
       </Switch>   
       <Footer />
     </Router>

@@ -13,15 +13,16 @@
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+  outline: none;
 }
 
 .home__login img {
-  width: 200px;
-  margin-top: 10px;
+  width: 150px;
 }
 
 .home__signup img {
-  width: 200px;
+  width: 150px;
+  margin-top: 5px;
 }
 
 .home__form {
@@ -29,11 +30,11 @@
   margin: 10px 50px;
   display: flex;
   flex-direction: column;
+  outline: none;
 }
 
 .home__signup__form {
-  height: 600px;
-  padding-top: 5px;
+  height: 400px;
   display: flex;
   flex-direction: column;
 }
@@ -42,7 +43,6 @@
   padding-top: 30px;
   color: rgba(173, 166, 166, 1);
   font-size: large;
-  font-family: roboto;
 }
 
 .home__signup__form input {
@@ -59,7 +59,6 @@
   padding-top: 30px;
   color: rgba(173, 166, 166, 1);
   font-size: large;
-  font-family: roboto;
 }
 
 .home__form input {
@@ -74,7 +73,6 @@
 .home__form__submit {
   margin-top: 50px;
   padding: 10px;
-  font-family: roboto;
   font-size: medium;
   border: none;
   border-radius: 5px;
@@ -84,7 +82,6 @@
 
 .home__login__redirect {
   padding: 40px;
-  font-family: roboto;
   color: #8c8989;
   font-size: medium;
 }
@@ -99,7 +96,6 @@
   border: none;
   background-color: white;
   color: #8c8989;
-  font-family: roboto;
   font-size: x-large;
   margin-left: 370px;
   margin-top: 2px;

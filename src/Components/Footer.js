@@ -13,9 +13,8 @@ export default function Footer() {
         <div className="footer-logo">
           <img src={imgLogo} alt="brand logo" />
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s,
+          Unlimited movies and more.
+          Watch anywhere. Cancel anytime.
           </p>
         </div>
         <ul className="footer-nav">
@@ -28,14 +27,14 @@ export default function Footer() {
         <div className="social">
           <p>Download</p>
           <div className="social-download">
-            <img src={imgGplay} alt="google play" />
-            <img className="appStore" src={imgApp} alt="app store" />
+            <img href='https://play.google.com/store' src={imgGplay} alt="google play" />
+            <img href='https://www.apple.com/app-store/' className="appStore" src={imgApp} alt="app store" />
           </div>
           <p>Social Media</p>
           <div className="social-media">
-            <img src={imgFb} alt="facebook" />
-            <img src={imgPin} alt="pinterest" />
-            <img src={imgIg} alt="instagram" />
+            <img href='https://id-id.facebook.com/' src={imgFb} alt="facebook" />
+            <img href='https://id.pinterest.com/login/' src={imgPin} alt="pinterest" />
+            <img href='https://www.instagram.com/' src={imgIg} alt="instagram" />
           </div>
         </div>
       </div>

@@ -1,10 +1,10 @@
-import "../assets/styles/FooterStyle.css";
-import imgLogo from "../assets/Images/footer-brand.png";
-import imgGplay from "../assets/Images/googleplay .png";
-import imgApp from "../assets/Images/appstore.png";
-import imgFb from "../assets/Images/face.png";
-import imgPin from "../assets/Images/pinter.png";
-import imgIg from "../assets/Images/instagram.png";
+import "../Assets/Styles/FooterStyle.css";
+import imgLogo from "../Assets/Images/footer-brand.png";
+import imgGplay from "../Assets/Images/googleplay .png";
+import imgApp from "../Assets/Images/appstore.png";
+import imgFb from "../Assets/Images/face.png";
+import imgPin from "../Assets/Images/pinter.png";
+import imgIg from "../Assets/Images/instagram.png";
 
 export default function Footer() {
   return (
@@ -13,8 +13,8 @@ export default function Footer() {
         <div className="footer-logo">
           <img src={imgLogo} alt="brand logo" />
           <p>
-            Unlimited movies and more.
-            Watch anywhere. Cancel anytime.
+          Unlimited movies and more.
+          Watch anywhere. Cancel anytime.
           </p>
         </div>
         <ul className="footer-nav">

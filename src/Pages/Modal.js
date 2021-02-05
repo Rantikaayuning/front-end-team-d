@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Modal from "react-modal";
-import Images from "../assets/Images/brand-logo.png";
-import "../assets/styles/loginModal.css";
-import "../assets/styles/Form.css";
+import Images from "../Assets/Images/brand-logo.png";
+import "../Assets/Styles/loginModal.css";
+import "../Assets/Styles/Form.css";
 
 const MODAL_SIGNUP = 1;
 const MODAL_LOGIN = 2;
@@ -54,7 +54,7 @@ function SignIn() {
             </button>
           </div>
           <div className="home__login">
-            <img src={Images} alt='login modal' />
+            <img src={Images} alt='login modal'/>
             <form className="home__form" onSubmit={handleLogin}>
               <div>Username</div>
               <input type="text" placeholder="" />
@@ -94,7 +94,7 @@ function SignIn() {
             </button>
           </div>
           <div className="home__signup">
-            <img src={Images} alt='signup modal' />
+            <img src={Images} alt='signup modal'/>
             <form className="home__signup__form" onSubmit={handleLogin}>
               <div>Username</div>
               <input type="text" placeholder="" />

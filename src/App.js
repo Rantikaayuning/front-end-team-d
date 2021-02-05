@@ -1,4 +1,5 @@
 import "./App.css";
+<<<<<<< HEAD
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage';
 import Navbar from "./Components/Navbar";
@@ -20,6 +21,11 @@ function App() {
       <Footer />
     </Router>
   );
+=======
+
+function App() {
+  return <div className="App"></div>;
+>>>>>>> 537f7b634065df528daa3310319275ecaefe9b36
 }
 
 export default App;

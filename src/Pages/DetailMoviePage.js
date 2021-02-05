@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import ReactStars from "react-rating-stars-component"
+
 import { TabContent, TabPane, Nav, NavItem, NavLink, Button, Row, Col, Jumbotron, Container, Media } from 'reactstrap';
 import classnames from 'classnames';
 
 import { getDetailMovieById, getReviewMovieById, getCastMovieById } from "../Redux/actions/HomePage";
 import { imgUrl } from "../Utils/constants";
-import "../assets/styles/DetailPage.css"
+import "../Assets/Styles/DetailPage.css"
 
 const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMovieById, getCastMovieById }) => {
   const { id } = useParams();

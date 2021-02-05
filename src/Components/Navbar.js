@@ -1,7 +1,7 @@
-import BrandLogo from "../assets/Images/brand-logo.png";
-import SignIn from "../pages/Modal.js";
+import BrandLogo from "../Assets/Images/brand-logo.png";
+import SignIn from "../Pages/Modal.js";
 import { Link } from "react-router-dom";
-import { StyledNavbar, StyledImg, StyledInput } from "../assets/styles/styled";
+import { StyledNavbar, StyledImg, StyledInput } from "../Assets/Styles/styled";
 
 export default function Navbar() {
   return (

@@ -8,7 +8,7 @@ import classnames from 'classnames';
 
 import { getDetailMovieById, getReviewMovieById, getCastMovieById } from "../Redux/actions/HomePage";
 import { imgUrl } from "../Utils/constants";
-import "../Assets/Styles/DetailPage.css"
+import "../assets/styles/DetailPage.css"
 
 const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMovieById, getCastMovieById }) => {
   const { id } = useParams();

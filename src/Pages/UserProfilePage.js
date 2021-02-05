@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { Card, CardTitle, CardSubtitle } from 'reactstrap';
-import { StyledProfile, StyledWatchlist, GroupButton, StyledDetail, StyledBackground } from '../Assets/Styles/styled';
-import imgProfile from '../Assets/Images/noprofile.png'
+import { StyledProfile, StyledWatchlist, GroupButton, StyledDetail, StyledBackground } from '../assets/styles/styled';
+import imgProfile from '../assets/Images/noprofile.png'
 
 const UserProfilePage = () => {
     return (

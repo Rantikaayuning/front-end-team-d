@@ -6,7 +6,7 @@ import { TabContent, TabPane, Nav, NavItem, NavLink, Button, Row, Col, Jumbotron
 import classnames from 'classnames';
 
 import { getDetailMovieById, getReviewMovieById, getCastMovieById } from "../Redux/actions/HomePage";
-import { imgUrl } from "../Utils/constants";
+import { imgUrl } from "../utils/constants";
 import "../assets/styles/DetailPage.css"
 
 const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMovieById, getCastMovieById }) => {

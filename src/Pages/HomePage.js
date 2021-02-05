@@ -51,7 +51,7 @@ const HomePage = ({ getGenreList, getMovieByGenre, getMovies, movies, genres }) 
                   <StyledImage src={`${imgUrl}${movie.poster_path}`} />
                   <CardBody>
                     <Title>{movie.title}</Title>
-                    <StyledP>{movie.release_date.split('-').reverse().join('-')}</StyledP>
+                    <StyledP>{movie.release_date}</StyledP>
                   </CardBody>
                 </StyledCard>
               </Link>

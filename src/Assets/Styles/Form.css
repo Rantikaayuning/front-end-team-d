@@ -13,15 +13,17 @@
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+  outline: none;
 }
 
 .home__login img {
-  width: 200px;
-  margin-top: 10px;
+  width: 150px;
+  margin-top: 5px;
 }
 
 .home__signup img {
-  width: 200px;
+  width: 150px;
+  margin-top: 5px;
 }
 
 .home__form {
@@ -29,6 +31,7 @@
   margin: 10px 50px;
   display: flex;
   flex-direction: column;
+  outline: none;
 }
 
 .home__signup__form {

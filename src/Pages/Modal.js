@@ -54,7 +54,7 @@ function SignIn() {
             </button>
           </div>
           <div className="home__login">
-            <img src={Images} />
+            <img src={Images} alt='login modal'/>
             <form className="home__form" onSubmit={handleLogin}>
               <div>Username</div>
               <input type="text" placeholder="" />
@@ -83,7 +83,7 @@ function SignIn() {
     } else if (whichModal === MODAL_SIGNUP) {
       return (
         <>
-          <div>
+          <div className='signup_box'>
             <button
               className="home__login__btn"
               onClick={() => {
@@ -94,7 +94,7 @@ function SignIn() {
             </button>
           </div>
           <div className="home__signup">
-            <img src={Images} />
+            <img src={Images} alt='signup modal'/>
             <form className="home__signup__form" onSubmit={handleLogin}>
               <div>Username</div>
               <input type="text" placeholder="" />

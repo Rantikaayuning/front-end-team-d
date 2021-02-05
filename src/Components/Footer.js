@@ -13,9 +13,8 @@ export default function Footer() {
         <div className="footer-logo">
           <img src={imgLogo} alt="brand logo" />
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s,
+          Unlimited movies and more.
+          Watch anywhere. Cancel anytime.
           </p>
         </div>
         <ul className="footer-nav">

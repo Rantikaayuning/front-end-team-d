@@ -17,7 +17,7 @@ const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMov
     getDetailMovieById(id);
     getReviewMovieById(id);
     getCastMovieById(id);
-  }, [])
+  }, [getDetailMovieById, getReviewMovieById, getCastMovieById])
 
   const renderImg = (img) => {
     let rendered =

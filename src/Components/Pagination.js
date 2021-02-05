@@ -9,7 +9,7 @@ const PaginationMovie = (props) => {
 
   useEffect(() => {
     props.getMovies();
-  }, [props])
+  }, [])
 
   const handlePage = (pg) => {
     setPage(pg);

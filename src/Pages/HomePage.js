@@ -28,7 +28,7 @@ const HomePage = ({ getGenreList, getMovieByGenre, getMovies, movies, genres }) 
             }`
         }
       </style>
-      <UncontrolledCarousel className='carousel' items={items} items={items} style={{ width: '100%', height: '400px' }} />
+      <UncontrolledCarousel className='carousel' items={items} style={{ width: '100%', height: '400px' }} />
       <br />
       <StyledGenre>
         <p>Browse by Category</p>

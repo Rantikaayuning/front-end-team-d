@@ -43,7 +43,7 @@ function SignIn() {
     if (whichModal === MODAL_LOGIN) {
       return (
         <>
-          <div>
+          <div className='sign_box'>
             <button
               className="home__login__btn"
               onClick={() => {
@@ -66,7 +66,7 @@ function SignIn() {
               </button>
             </form>
             <h2 className="home__login__redirect">
-              Don't have an account?
+              Don't have an account? {' '}
               <span
                 className="redirect__signup"
                 onClick={() => {
@@ -83,7 +83,7 @@ function SignIn() {
     } else if (whichModal === MODAL_SIGNUP) {
       return (
         <>
-          <div className='signup_box'>
+          <div className='sign_box'>
             <button
               className="home__login__btn"
               onClick={() => {

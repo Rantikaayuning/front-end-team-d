@@ -25,3 +25,9 @@
   background-color: hsla(100, 4%, 15%, 0.185);
   z-index: 99;
 }
+
+.signup_box {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 5px;
+}

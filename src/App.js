@@ -7,6 +7,8 @@ import DetailMoviePage from './Pages/DetailMoviePage';
 import UserProfilePage from './Pages/UserProfilePage';
 import UserSettingPage from './Pages/UserSettingPage';
 import Search from "./Pages/MovieSearch";
+import OtherMoviePage from './Pages/OtherMovie';
+import OtherMovieDetail from './Pages/OtherMovieDetail';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route exact path='/user-profile-page' component={UserProfilePage}/>
         <Route exact path='/user-setting-page' component={UserSettingPage}/>
         <Route exact path='/search-page' component={Search}/>
+        <Route exact path='/other-movie' component={OtherMoviePage}/>
+        <Route exact path='/other-movie/detail' component={OtherMovieDetail}/>
       </Switch>   
       <Footer />
     </Router>

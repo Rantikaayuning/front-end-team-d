@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { getGenreList, getMovies, getMovieByGenre } from '../Redux/actions/HomePage';
 import { imgUrl, items } from '../Utils/constants';
-import { Spinner, CardBody, Col, Container, Row, UncontrolledCarousel } from "reactstrap";
+import { Spinner, CardBody, Col, Container, Row, UncontrolledCarousel, Button } from "reactstrap";
 import { StyledGenre, Title, GroupButton, StyledCard, StyledImage, StyledP } from '../Assets/Styles/styled';
 import PaginationMovie from '../Components/Pagination';
 
@@ -59,6 +59,11 @@ const HomePage = ({ getGenreList, getMovieByGenre, getMovies, movies, genres }) 
           )) : <Spinner style={{ width: '3rem', height: '3rem' }} />}
         </Row>
         <PaginationMovie />
+        <Link to='/other-movie'>
+          <Button outline color='info'>Special Movie</Button>
+        </Link>
+        <br/>
+        <br />
       </Container>
     </>
   )

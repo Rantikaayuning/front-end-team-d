@@ -1,11 +1,23 @@
 import React, { useState } from "react";
-import BrandLogo from "../Assets/Images/brand-logo.png";
-import SignIn from "../Pages/Modal.js";
+import Modal from "react-modal";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
-import { StyledNavbar, StyledImg, StyledInput } from "../Assets/Styles/styled";
-import { getValue } from "../Redux/types/HomePage";
+import { useSelector, useDispatch } from "react-redux";
+import {Dropdown,DropdownToggle,DropdownMenu,DropdownItem,} from "reactstrap";
+import imgProfile from "../Assets/Images/noprofile.png";
+
+import { postSignUp, postSignIn, logout } from "../Redux/actions/UserActions";
 import { getSearchValue } from "../Redux/actions/HomePage";
+import { getValue } from "../Redux/types/HomePage";
+import BrandLogo from "../Assets/Images/brand-logo.png";
+import { StyledNavbar, StyledImg, StyledInput } from "../Assets/Styles/styled";
+import "../Assets/Styles/loginModal.css";
+import "../Assets/Styles/Form.css";
+import Images from "../Assets/Images/brand-logo.png";
+
+
+const MODAL_SIGNUP = 1;
+const MODAL_LOGIN = 2;
 
 const Navbar = ({value, getSearchValue, getValue}) => {
   const [search, setSearch] = useState(value)
@@ -20,28 +32,250 @@ const Navbar = ({value, getSearchValue, getValue}) => {
   }
 
   console.log('value=', value);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [whichModal, setWhichModal] = useState(null);
+  const [userData, setUserData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+  const [userSignin, setUserSignin] = useState({
+    username: "",
+    password: "",
+    token: "",
+  });
+
+  const { isAuthentificated } = useSelector((state) => state.users);
+
+  const dispatch = useDispatch();
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggle = () => setDropdownOpen((prevState) => !prevState);
+
+  
   return (
     <StyledNavbar>
-      <Link to="/">
+      <Link to="/" className="img-logo">
         <StyledImg src={BrandLogo} alt="logo" />
       </Link>
-      <li>
+      <li className="search">
         <Link to='/search-page'>
           <form action='' onSubmit={handleSubmit}>
             <StyledInput type="text" placeholder="Search movie" onChange={handleChange}/>
           </form>
         </Link>
       </li>
-      <li>
-        <SignIn />
+      <li className="form">
+        <div>
+        {isAuthentificated ? (
+            <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+              <DropdownToggle caret className="dropdowm">
+                <img src={imgProfile} />
+              </DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem header>Username</DropdownItem>
+                <Link to="/user-profile-page">
+                  <DropdownItem>Profile</DropdownItem>
+                </Link>
+                <Link to="/user-setting-page">
+                  <DropdownItem>Settings</DropdownItem>
+                </Link>
+                <DropdownItem>Help</DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem
+                  toggle={toggle}
+                  onClick={() => {
+                    dispatch(logout());
+                    window.open("/");
+                  }}
+                >
+                  Sign Out
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          ) : (<div
+            className="login"
+            onClick={() => {
+              setIsModalOpen(true);
+              setWhichModal(MODAL_LOGIN);
+            }}
+          >
+            Sign in
+          </div>
+          )}
+           <Modal
+            isOpen={isModalOpen}
+            onRequestClose={() => setIsModalOpen(true)}
+            className="modal-container"
+            overlayClassName="modal-overlay--center"
+            contentLabel="Learn Modal"
+          >
+            {rederWhichModal()}
+          </Modal>
+        </div>
       </li>
     </StyledNavbar>
   );
+
+  function rederWhichModal() {
+    const toggleModal = (e) => {
+      e.preventDefault();
+      setIsModalOpen(false);
+    };
+
+    const handleChange = (e) => {
+      setUserData({
+        ...userData,
+        [e.target.name]: e.target.value,
+      });
+    };
+
+    const handleSignIn = (e) => {
+      setUserSignin({
+        ...userSignin,
+        [e.target.name]: e.target.value,
+      });
+    };
+
+    const submitSignUp = (e) => {
+      const body = {
+        username: userData.username,
+        email: userData.email,
+        password: userData.password,
+      };
+      dispatch(postSignUp(body));
+      setIsModalOpen(false);
+    };
+
+    const submitSignIn = (e) => {
+      const body = {
+        username: userSignin.username,
+        password: userSignin.password,
+      };
+
+      if (
+        body.username != userData.username ||
+        body.password != userData.password
+      ) {
+        alert("The email address or password is incorrect.");
+      } else {
+        dispatch(postSignIn(body));
+        setIsModalOpen(false);
+      }
+    };
+
+    if (whichModal === MODAL_LOGIN) {
+      return (
+        <>
+          <div>
+            <button
+              className="home-login-btn"
+              onClick={() => {
+                setIsModalOpen(false);
+              }}
+            >
+              X
+            </button>
+          </div>
+          <div className="home-login">
+            <img src={Images} />
+            <form className="home-form" onSubmit={toggleModal}>
+              <div>Username</div>
+              <input
+                type="text"
+                placeholder="Username"
+                name="username"
+                onChange={(e) => handleSignIn(e)}
+              />
+              <div>Password</div>
+              <input
+                type="password"
+                placeholder="Password"
+                name="password"
+                onChange={(e) => handleSignIn(e)}
+              />
+              <button
+                className="home-form-submit"
+                type="submit"
+                onClick={submitSignIn}
+              >
+                Login
+              </button>
+            </form>
+            <h2 className="home-login-redirect">
+              Don't have an account?{" "}
+              <span
+                className="redirect-signup"
+                onClick={() => {
+                  setWhichModal(MODAL_SIGNUP);
+                }}
+              >
+                Sign Up
+              </span>
+            </h2>
+          </div>
+        </>
+      );
+    } else if (whichModal === MODAL_SIGNUP) {
+      return (
+        <>
+          <div>
+            <button
+              className="home-login-btn"
+              onClick={() => {
+                setIsModalOpen(false);
+              }}
+            >
+              X
+            </button>
+          </div>
+          <div className="home-signup">
+            <img src={Images} />
+            <form className="home-signup-form" onSubmit={handleSignIn}>
+              <div>Username</div>
+              <input
+                type="text"
+                placeholder="Username"
+                name="username"
+                onChange={(e) => handleChange(e)}
+              />
+
+              <div>Email</div>
+              <input
+                type="email"
+                placeholder="Email"
+                name="email"
+                onChange={(e) => handleChange(e)}
+              />
+
+              <div>Password</div>
+              <input
+                type="password"
+                placeholder="Password"
+                name="password"
+                onChange={(e) => handleChange(e)}
+              />
+
+              <button
+                className="home-form-submit"
+                type="submit"
+                onClick={submitSignUp}
+              >
+                Sign Up
+              </button>
+            </form>
+          </div>
+        </>
+      );
+    }
+ }
 }
 
 const mapStateToProps = state => {
   return {
-      value: state.homePage.value
+      value: state.homePage.value,
   }
 }
 

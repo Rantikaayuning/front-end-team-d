@@ -152,7 +152,7 @@ const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMov
             </div>
           </TabPane>
 
-          {/* Review */}
+          {/* Review Form*/}
           < TabPane tabId="3" >
             <div className="mt-3 detail-page-content">
 
@@ -165,14 +165,22 @@ const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMov
                   />
                 </Media>
                 <Media body>
-                  <Media heading>rate</Media>
-                  <textarea
-                    className="form-control"
-                    placeholder="leave comment here"
-                  ></textarea>
+                  <Media heading>Name</Media>
+                  <div className="review-form">
+                    <form>
+                      <textarea
+                        className="form-control mb-3"
+                        placeholder="leave comment here"
+                      ></textarea>
+                      <div className="d-flex justify-content-end">
+                        <Button color="primary" size="sm">Add Review</Button>
+                      </div>
+                    </form>
+                  </div>
                 </Media>
               </Media>
 
+              {/* Review Movie */}
               <div className="mt-4">
                 {review !== 0 ? review.map((review) => (
                   <div sm="12" key={review.id}>

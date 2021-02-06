@@ -23,3 +23,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.review-form {
+  max-width: 500px;
+}

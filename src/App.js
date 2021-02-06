@@ -6,6 +6,7 @@ import Footer from "./Components/Footer";
 import DetailMoviePage from './Pages/DetailMoviePage';
 import UserProfilePage from './Pages/UserProfilePage';
 import UserSettingPage from './Pages/UserSettingPage';
+import Search from "./Pages/MovieSearch";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route exact path='/detail-movie/:id' component={DetailMoviePage}/>
         <Route exact path='/user-profile-page' component={UserProfilePage}/>
         <Route exact path='/user-setting-page' component={UserSettingPage}/>
+        <Route exact path='/search-page' component={Search}/>
       </Switch>   
       <Footer />
     </Router>

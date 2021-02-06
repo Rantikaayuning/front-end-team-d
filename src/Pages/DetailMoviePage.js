@@ -65,7 +65,12 @@ const DetailMoviePage = ({ movie, review, cast, video, getDetailMovieById, getRe
             <br /> <br />
             <p className="lead">{movie.tagline}</p>
             <div className="lead">
-              {/* <Button color="primary"><a href={`${videoUrl}${video[0].key}`}>Watch Trailer</a></Button> */}
+              {video.length === 0 ? null : (
+                <Button className="mr-3" color="primary">
+                  <a className="text-white text-decoration-none" href={`${videoUrl}${video[0].key}`} target="blank">Watch Trailer</a>
+                </Button>
+              )}
+
               <Button color="primary">Add To Watch List</Button>
             </div>
           </div>

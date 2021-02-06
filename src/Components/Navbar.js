@@ -87,7 +87,6 @@ const Navbar = ({auth, value, getSearchValue, getValue}) => {
                   toggle={toggle}
                   onClick={() => {
                     dispatch(logout());
-                    window.open("/");
                   }}
                 >
                   Sign Out

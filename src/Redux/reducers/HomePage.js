@@ -7,7 +7,7 @@ import {
     GET_DETAIL_MOVIE,
     GET_MOVIE_SEARCH,
     GET_REVIEW_MOVIE,
-    GET_CAST_MOVIE
+    GET_CAST_MOVIE, GET_VIDEO_MOVIE
 } from '../types/HomePage';
 
 let initialState = {
@@ -20,10 +20,11 @@ let initialState = {
     review: [],
     cast: [],
     value: '',
+    video: []
 }
 
 const homePageReducer = (state = initialState, action) => {
-    if (action.type === GET_MOVIE_REQUEST){
+    if (action.type === GET_MOVIE_REQUEST) {
         return {
             ...state,
             isLoading: true,
@@ -81,6 +82,12 @@ const homePageReducer = (state = initialState, action) => {
         return {
             ...state,
             cast: action.payload,
+        };
+    }
+    if (action.type === GET_VIDEO_MOVIE) {
+        return {
+            ...state,
+            video: action.payload,
         };
     }
     return state;

@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import ReactStars from "react-rating-stars-component"
 
 import { TabContent, TabPane, Nav, NavItem, NavLink, Button, Row, Col, Jumbotron, Container, Media } from 'reactstrap';
 import classnames from 'classnames';
 
-import { getDetailMovieById, getReviewMovieById, getCastMovieById } from "../Redux/actions/HomePage";
-import { imgUrl } from "../Utils/constants";
+import { getDetailMovieById, getReviewMovieById, getCastMovieById, getVideoMovieById } from "../Redux/actions/HomePage";
+import { imgUrl, videoUrl } from "../Utils/constants";
 import "../Assets/Styles/DetailPage.css"
 
-const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMovieById, getCastMovieById }) => {
+const DetailMoviePage = ({ movie, review, cast, video, getDetailMovieById, getReviewMovieById, getCastMovieById, getVideoMovieById }) => {
   const { id } = useParams();
 
   useEffect(() => {
     getDetailMovieById(id);
     getReviewMovieById(id);
     getCastMovieById(id);
+    getVideoMovieById(id);
   }, [])
 
   const renderImg = (img) => {
@@ -39,6 +40,8 @@ const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMov
   const toggle = tab => {
     if (activeTab !== tab) setActiveTab(tab);
   }
+
+
   return (
     <div>
       {/* Banner movie */}
@@ -61,10 +64,10 @@ const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMov
             <span>{movie.vote_count} votes</span>
             <br /> <br />
             <p className="lead">{movie.tagline}</p>
-            <p className="lead">
-              <Button color="primary mr-4">Watch Trailer</Button>
+            <div className="lead">
+              {/* <Button color="primary"><a href={`${videoUrl}${video[0].key}`}>Watch Trailer</a></Button> */}
               <Button color="primary">Add To Watch List</Button>
-            </p>
+            </div>
           </div>
         </Container>
 
@@ -220,7 +223,8 @@ const mapStateToProps = (state) => {
   return {
     movie: state.homePage.movie,
     review: state.homePage.review,
-    cast: state.homePage.cast
+    cast: state.homePage.cast,
+    video: state.homePage.video
   };
 };
 
@@ -229,6 +233,7 @@ const mapDispatchToProps = (dispatch) => {
     getReviewMovieById: (id) => dispatch(getReviewMovieById(id)),
     getDetailMovieById: (id) => dispatch(getDetailMovieById(id)),
     getCastMovieById: (id) => dispatch(getCastMovieById(id)),
+    getVideoMovieById: (id) => dispatch(getVideoMovieById(id)),
   };
 }
 

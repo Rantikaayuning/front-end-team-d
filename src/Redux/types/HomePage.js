@@ -63,7 +63,7 @@ export const getCastMovie = (payload) => {
     };
 };
 
-export const getMovieSearch = (payload) => {
+export const getValue = (payload) => {
     return {
         type: GET_MOVIE_SEARCH,
         payload,

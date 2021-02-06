@@ -19,7 +19,7 @@ let initialState = {
     movie: [],
     review: [],
     cast: [],
-    value: '',
+    value: [],
 }
 
 const homePageReducer = (state = initialState, action) => {
@@ -67,8 +67,8 @@ const homePageReducer = (state = initialState, action) => {
     if (action.type === GET_MOVIE_SEARCH) {
         return {
             ...state,
-            movies: action.payload,
-            value: action.value,
+            value: action.payload,
+            // search: action.payload
         }
     }
     if (action.type === GET_REVIEW_MOVIE) {

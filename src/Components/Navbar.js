@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import {Dropdown,DropdownToggle,DropdownMenu,DropdownItem,} from "reactstrap";
 import imgProfile from "../Assets/Images/noprofile.png";
 
@@ -19,7 +19,7 @@ import Images from "../Assets/Images/brand-logo.png";
 const MODAL_SIGNUP = 1;
 const MODAL_LOGIN = 2;
 
-const Navbar = ({value, getSearchValue, getValue}) => {
+const Navbar = ({auth, value, getSearchValue, getValue}) => {
   const [search, setSearch] = useState(value)
 
   const handleChange = (e) => {
@@ -46,7 +46,6 @@ const Navbar = ({value, getSearchValue, getValue}) => {
     token: "",
   });
 
-  const { isAuthentificated } = useSelector((state) => state.users);
 
   const dispatch = useDispatch();
 
@@ -69,7 +68,7 @@ const Navbar = ({value, getSearchValue, getValue}) => {
       </li>
       <li className="form">
         <div>
-        {isAuthentificated ? (
+        {auth ? (
             <Dropdown isOpen={dropdownOpen} toggle={toggle}>
               <DropdownToggle caret className="dropdowm">
                 <img src={imgProfile} />
@@ -276,6 +275,7 @@ const Navbar = ({value, getSearchValue, getValue}) => {
 const mapStateToProps = state => {
   return {
       value: state.homePage.value,
+      auth: state.users.isAuthentificated,
   }
 }
 

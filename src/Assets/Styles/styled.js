@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button, Card, CardImg } from 'reactstrap';
+import { Button, Card, CardBody, CardImg, Container } from 'reactstrap';
 import background from '../Images/background.jpg';
 
 export const StyledNavbar = styled.div`
@@ -106,4 +106,16 @@ export const StyledImage= styled(CardImg)`
 `
 export const StyledP = styled.p`
     text-align: center;
+`
+export const StyledContainer = styled(Container)`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+`
+export const StyledCardBody = styled(CardBody)`
+    background-color: white;
+    &:hover {
+        background-color: #f2f1e4;
+    }
 `

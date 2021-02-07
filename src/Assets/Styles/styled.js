@@ -9,7 +9,7 @@ export const StyledNavbar = styled.div`
     padding: 10px;
 `
 export const StyledImg = styled.img`
-    width: 150px;
+    width: 50px;
     padding: 0;
 `
 export const StyledGenre = styled.div`

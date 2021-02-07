@@ -15,7 +15,7 @@ const UserProfilePage = () => {
       }
     }, []);
   
-    const handleDelete = (id) => {
+    const handleRemove = (id) => {
       let watchlist = JSON.parse(localStorage.getItem("watchlist"));
       watchlist = [...watchlist.filter((movie) => movie.id !== id)];
       localStorage.setItem("watchlist", JSON.stringify(watchlist));
@@ -45,7 +45,7 @@ const UserProfilePage = () => {
                                 <StyledP>{movie.release_date}</StyledP>
                                 <StyledP>
                                 <Link to={`/detail-movie/${movie.id}`}><Button outline color='info'>Detail</Button></Link>
-                                <Button outline color='danger' onClick={() => {handleDelete(movie.id)}}>Remove</Button>
+                                <Button outline color='danger' onClick={() => {handleRemove(movie.id)}}>Remove</Button>
                                 </StyledP>
                             </CardBody>
                         </WatchlistCard>

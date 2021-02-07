@@ -5,7 +5,7 @@ const baseUrl = 'https://bbm-warehouse.herokuapp.com'
 
 export const postSignUp = (body) => (dispatch) => {
   axios
-    .post(`https://cors-anywhere.herokuapp.com/${baseUrl}/register`, {...body})
+    .post(`{baseUrl}/register`, { ...body })
     .then((response) => {
       if (response.status === 200) {
         dispatch({
@@ -19,7 +19,7 @@ export const postSignUp = (body) => (dispatch) => {
 
 export const postSignIn = (body) => (dispatch) => {
   axios
-    .post(`https://cors-anywhere.herokuapp.com/${baseUrl}/login`, {...body})
+    .post(`${baseUrl}/login`, { ...body })
     .then((response) => {
       if (response.status === 200) {
         dispatch({
@@ -37,6 +37,6 @@ export const logout = () => (dispatch) => {
 };
 
 export const failed = () => (dispatch) => {
-  dispatch({ type: FAILED});
+  dispatch({ type: FAILED });
   alert("The email address or password is incorrect.")
 };

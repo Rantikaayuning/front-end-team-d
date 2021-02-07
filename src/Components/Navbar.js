@@ -3,10 +3,10 @@ import Modal from "react-modal";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
 import { useDispatch } from "react-redux";
-import {Dropdown,DropdownToggle,DropdownMenu,DropdownItem,} from "reactstrap";
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, } from "reactstrap";
 
 import imgProfile from "../Assets/Images/noprofile.png";
-import { postSignUp, postSignIn, logout, failed} from "../Redux/actions/UserActions";
+import { postSignUp, postSignIn, logout, failed } from "../Redux/actions/UserActions";
 import { getSearchValue } from "../Redux/actions/HomePage";
 import { getValue } from "../Redux/types/HomePage";
 import BrandLogo from "../Assets/Images/brand-logo.png";
@@ -19,7 +19,7 @@ import Images from "../Assets/Images/brand-logo.png";
 const MODAL_SIGNUP = 1;
 const MODAL_LOGIN = 2;
 
-const Navbar = ({auth, value, getSearchValue, getValue}) => {
+const Navbar = ({ auth, value, getSearchValue, getValue }) => {
 
   //SEARCH
   const [search, setSearch] = useState(value)
@@ -27,7 +27,7 @@ const Navbar = ({auth, value, getSearchValue, getValue}) => {
   const handleChange = (e) => {
     setSearch(e.target.value)
   }
-  
+
   const handleSubmit = (e) => {
     e.preventDefault()
     getSearchValue(search)
@@ -44,7 +44,7 @@ const Navbar = ({auth, value, getSearchValue, getValue}) => {
     email: "",
     password: "",
   });
-  
+
   const [userSignin, setUserSignin] = useState({
     username: "",
     password: "",
@@ -57,7 +57,7 @@ const Navbar = ({auth, value, getSearchValue, getValue}) => {
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
 
-  
+
   return (
     <StyledNavbar>
       <Link to="/" className="img-logo">
@@ -66,16 +66,16 @@ const Navbar = ({auth, value, getSearchValue, getValue}) => {
       <li className="search">
         <Link to='/search-page'>
           <form action='' onSubmit={handleSubmit}>
-            <StyledInput type="text" placeholder="Search movie" onChange={handleChange}/>
+            <StyledInput type="text" placeholder="Search movie" onChange={handleChange} />
           </form>
         </Link>
       </li>
       <li className="form">
         <div>
-        {auth ? (
+          {auth ? (
             <Dropdown isOpen={dropdownOpen} toggle={toggle}>
               <DropdownToggle caret className="dropdowm">
-                <img src={imgProfile} />
+                <img src={imgProfile} alt="avatar" />
               </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem header>Username</DropdownItem>
@@ -106,8 +106,8 @@ const Navbar = ({auth, value, getSearchValue, getValue}) => {
           >
             Sign in
           </div>
-          )}
-           <Modal
+            )}
+          <Modal
             isOpen={isModalOpen}
             onRequestClose={() => setIsModalOpen(true)}
             className="modal-container"
@@ -157,15 +157,16 @@ const Navbar = ({auth, value, getSearchValue, getValue}) => {
         password: userSignin.password,
       };
       if (
-        body.username != userData.username ||
-        body.password != userData.password || 
+        body.username !== userData.username ||
+        body.password !== userData.password ||
         body.username === "" || body.password === ""
       ) {
         dispatch(failed())
-      } else{
+      } else {
         dispatch(postSignIn(body));
-        setIsModalOpen(false)}
-      
+        setIsModalOpen(false)
+      }
+
     };
 
     if (whichModal === MODAL_LOGIN) {
@@ -182,12 +183,12 @@ const Navbar = ({auth, value, getSearchValue, getValue}) => {
             </button>
           </div>
           <div className="home-login">
-            <img src={Images} />
+            <img src={Images} alt="logo" />
             <form className="home-form" onSubmit={toggleModal}>
               <div>Username</div>
               <input type="text" placeholder="Username" name="username" onChange={(e) => handleSignIn(e)} />
               <div>Password</div>
-              <input type="password" placeholder="Password" name="password" onChange={(e) => handleSignIn(e)}/>
+              <input type="password" placeholder="Password" name="password" onChange={(e) => handleSignIn(e)} />
               <button
                 className="home-form-submit"
                 type="submit"
@@ -223,16 +224,16 @@ const Navbar = ({auth, value, getSearchValue, getValue}) => {
               X
             </button>
           </div>
-        
+
           <div className="home-signup">
-            <img src={Images} />
+            <img src={Images} alt="logo" />
             <form className="home-signup-form">
               <div>Username</div>
               <input type="text" placeholder="Username" name="username" onChange={(e) => handleChange(e)} />
               <div>Email</div>
               <input type="email" placeholder="Email" name="email" onChange={(e) => handleChange(e)} />
               <div>Password</div>
-              <input type="password" placeholder="Password" name="password" onChange={(e) => handleChange(e)}/>
+              <input type="password" placeholder="Password" name="password" onChange={(e) => handleChange(e)} />
 
               <button
                 className="home-form-submit"
@@ -246,20 +247,20 @@ const Navbar = ({auth, value, getSearchValue, getValue}) => {
         </>
       );
     }
- }
+  }
 }
 
 const mapStateToProps = state => {
   return {
-      value: state.homePage.value,
-      auth: state.users.isAuthentificated,
+    value: state.homePage.value,
+    auth: state.users.isAuthentificated,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-      getValue: (value) => dispatch(getValue(value)),
-      getSearchValue: (value) => dispatch(getSearchValue(value))
+    getValue: (value) => dispatch(getValue(value)),
+    getSearchValue: (value) => dispatch(getSearchValue(value))
   }
 }
 

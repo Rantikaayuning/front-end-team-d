@@ -70,8 +70,11 @@ const DetailMoviePage = ({ auth, movie, review, cast, video, getDetailMovieById,
                   <a className="text-white text-decoration-none" href={`${videoUrl}${video[0].key}`} target="blank">Watch Trailer</a>
                 </Button>
               )}
-
-              <Button color="primary">Add To Watch List</Button>
+              {auth ? (
+                <Button color="primary">Add To Watch List</Button>
+              ) :
+                (<Button color="primary" disabled>Add To Watch List</Button>)
+              }
             </div>
           </div>
         </Container>
@@ -189,8 +192,8 @@ const DetailMoviePage = ({ auth, movie, review, cast, video, getDetailMovieById,
 
 
               {/* Review Movie */}
-              <div className="mt-4">
-                {review !== 0 ? review.map((review) => (
+              {/* <div className="mt-4">
+                {review !== [] ? review.map((review) => (
                   <div sm="12" key={review.id}>
                     <Media className="my-3">
                       <Media className="mr-3" left middle >
@@ -211,14 +214,44 @@ const DetailMoviePage = ({ auth, movie, review, cast, video, getDetailMovieById,
                       </Media>
                     </Media>
                   </div>
-                )) : ""}
-              </div>
+                )) : (<h3> no review </h3>)}
+              </div> */}
+
+              {review.length === 0 ?
+                <div className="no-review py-2">
+                  <h3> {`No reviews in this Movie 😢`} </h3>
+                </div>
+
+                : review.map((review) => (
+                  <div sm="12" key={review.id}>
+                    <Media className="my-3">
+                      <Media className="mr-3" left middle >
+                        <img
+                          className="img-card-review"
+                          src={renderImg(review.author_details.avatar_path)}
+                          alt="Generic placeholder"
+                        />
+                      </Media>
+                      <Media body>
+                        <h4>{review.author}</h4>
+                        <ReactStars
+                          size={18}
+                          value={review.author_details.rating / 2}
+                          edit={false}
+                          isHalf={true} />
+                        <p>{review.content.slice(0, 450)} ...</p>
+                      </Media>
+                    </Media>
+                  </div>
+                ))}
+
+
             </div>
           </TabPane>
 
         </TabContent>
       </Container>
-    </div>
+    </div >
   );
 };
 

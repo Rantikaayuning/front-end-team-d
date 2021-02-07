@@ -6,11 +6,11 @@ import { Container, Spinner, CardBody, Col, Row, Jumbotron } from "reactstrap";
 import { imgUrl } from '../Utils/constants';
 import { Title, StyledCard, StyledImage, StyledP } from '../Assets/Styles/styled';
 
-const Search = (props) => {
+const Search = ({value, getMovies}) => {
 
     useEffect(() => {
-        getMovies(props.value);
-      }, [getMovies])
+        getMovies(value);
+      }, [getMovies, value])
 
   return (
     <>
@@ -21,7 +21,7 @@ const Search = (props) => {
       </Jumbotron>
       <Container>
           <Row>
-          {props.value !== 0 ? props.value.map((movie) => (
+          {value !== 0 ? value.map((movie) => (
           <Col md={3} key={movie.id} >
               <Link
               to={`/detail-movie/${movie.id}`}

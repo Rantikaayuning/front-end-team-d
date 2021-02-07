@@ -16,7 +16,7 @@ const OtherMovieDetail = () => {
           console.log('result users =>', movies);
       }
       fetchData();
-  }, []);
+  }, [id]);
 
   return (
     <>

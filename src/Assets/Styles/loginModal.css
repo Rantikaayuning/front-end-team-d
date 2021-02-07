@@ -1,9 +1,13 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
 .login {
   cursor: pointer;
-  font-weight: bolder;
+  font-family: Roboto;
+  font-size: larger;
+  font-weight: bold;
 }
 
-.modal__container {
+.modal-container {
   background-color: white;
   position: absolute;
   margin-top: 30px;
@@ -11,7 +15,7 @@
   border: none;
 }
 
-.modal__overlay--center {
+.modal-overlay--center {
   position: fixed;
   top: 0;
   left: 0;

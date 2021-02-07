@@ -1,51 +1,51 @@
 /* LOGIN */
-.home__login {
+.home-login {
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
 }
 
-.home__signup {
+.home-signup {
   height: 470px;
   margin: 0px 50px 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  outline: none;
 }
 
-.home__login img {
-  width: 150px;
+.home-login img {
+  width: 200px;
+  margin-top: 10px;
 }
 
-.home__signup img {
-  width: 150px;
-  margin-top: 5px;
+.home-signup img {
+  width: 200px;
 }
 
-.home__form {
+.home-form {
   height: 300px;
   margin: 10px 50px;
   display: flex;
   flex-direction: column;
-  outline: none;
 }
 
-.home__signup__form {
-  height: 400px;
+.home-signup-form {
+  height: 600px;
+  padding-top: 5px;
   display: flex;
   flex-direction: column;
 }
 
-.home__signup__form div {
+.home-signup-form div {
   padding-top: 30px;
   color: rgba(173, 166, 166, 1);
   font-size: large;
+  font-family: roboto;
 }
 
-.home__signup__form input {
+.home-signup-form input {
   margin-top: 10px;
   width: 300px;
   height: 40px;
@@ -55,24 +55,27 @@
   border-radius: 5px;
 }
 
-.home__form div {
+.home-form div {
   padding-top: 30px;
   color: rgba(173, 166, 166, 1);
   font-size: large;
+  font-family: roboto;
 }
 
-.home__form input {
+.home-form input {
   margin-top: 10px;
   width: 300px;
   height: 40px;
+  padding-left: 5px;
   background-color: #ece7e7;
   border: none;
   border-radius: 5px;
 }
 
-.home__form__submit {
+.home-form-submit {
   margin-top: 50px;
   padding: 10px;
+  font-family: roboto;
   font-size: medium;
   border: none;
   border-radius: 5px;
@@ -80,30 +83,49 @@
   background-color: #fe024e;
 }
 
-.home__login__redirect {
+.home-login-redirect {
   padding: 40px;
+  font-family: roboto;
   color: #8c8989;
   font-size: medium;
 }
 
-.redirect__signup {
+.redirect-signup {
   cursor: pointer;
+  font-weight: bold;
   color: #fe024e;
 }
 
-.home__login__btn {
+.home-login-btn {
   padding: 2px;
   border: none;
   background-color: white;
   color: #8c8989;
+  font-family: roboto;
   font-size: x-large;
   margin-left: 370px;
   margin-top: 2px;
 }
 
+.img-logo {
+  padding: inherit;
+}
+
+.form {
+  padding: inherit;
+}
+
+.search {
+  padding: inherit;
+}
+
+.dropdown img {
+  width: 40px;
+}
+
 /* RESPONSIVE */
 @media screen and (max-width: 450px) {
-  .home__signup__form input {
+  .home-signup-form input {
     margin-top: 10px;
     width: 200px;
     height: 40px;
@@ -113,7 +135,7 @@
     border-radius: 5px;
   }
 
-  .home__form input {
+  .home-form input {
     margin-top: 10px;
     width: 200px;
     height: 40px;

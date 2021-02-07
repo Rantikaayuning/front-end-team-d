@@ -10,7 +10,7 @@ import { getDetailMovieById, getReviewMovieById, getCastMovieById } from "../Red
 import { imgUrl } from "../Utils/constants";
 import "../Assets/Styles/DetailPage.css"
 
-const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMovieById, getCastMovieById }) => {
+const DetailMoviePage = ({ auth, movie, review, cast, getDetailMovieById, getReviewMovieById, getCastMovieById }) => {
   const { id } = useParams();
 
   useEffect(() => {
@@ -155,8 +155,7 @@ const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMov
           {/* Review */}
           < TabPane tabId="3" >
             <div className="mt-3 detail-page-content">
-
-              <Media className="mt-1">
+              {auth ? (<Media className="mt-1">
                 <Media className="mr-3" left middle >
                   <img
                     className="img-card-review"
@@ -171,7 +170,8 @@ const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMov
                     placeholder="leave comment here"
                   ></textarea>
                 </Media>
-              </Media>
+              </Media>) : ""}
+              
 
               <div className="mt-4">
                 {review !== 0 ? review.map((review) => (
@@ -191,13 +191,11 @@ const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMov
                           value={review.author_details.rating / 2}
                           edit={false}
                           isHalf={true} />
-                        <div>{review.author_details.rating}</div>
                         <p>{review.content.slice(0, 450)} ...</p>
                       </Media>
                     </Media>
                   </div>
                 )) : ""}
-
               </div>
             </div>
           </TabPane>
@@ -212,7 +210,8 @@ const mapStateToProps = (state) => {
   return {
     movie: state.homePage.movie,
     review: state.homePage.review,
-    cast: state.homePage.cast
+    cast: state.homePage.cast,
+    auth: state.users.isAuthentificated,
   };
 };
 

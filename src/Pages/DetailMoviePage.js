@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import ReactStars from "react-rating-stars-component"
 
 import { TabContent, TabPane, Nav, NavItem, NavLink, Button, Row, Col, Jumbotron, Container, Media } from 'reactstrap';
 import classnames from 'classnames';
 
-import { getDetailMovieById, getReviewMovieById, getCastMovieById } from "../Redux/actions/HomePage";
-import { imgUrl } from "../Utils/constants";
+import { getDetailMovieById, getReviewMovieById, getCastMovieById, getVideoMovieById } from "../Redux/actions/HomePage";
+import { imgUrl, videoUrl } from "../Utils/constants";
 import "../Assets/Styles/DetailPage.css"
 
-const DetailMoviePage = ({ auth, movie, review, cast, getDetailMovieById, getReviewMovieById, getCastMovieById }) => {
+const DetailMoviePage = ({ auth, movie, review, cast, video, getDetailMovieById, getReviewMovieById, getCastMovieById, getVideoMovieById }) => {
   const { id } = useParams();
 
   useEffect(() => {
     getDetailMovieById(id);
     getReviewMovieById(id);
     getCastMovieById(id);
+    getVideoMovieById(id);
   }, [])
 
   const renderImg = (img) => {
@@ -39,6 +40,8 @@ const DetailMoviePage = ({ auth, movie, review, cast, getDetailMovieById, getRev
   const toggle = tab => {
     if (activeTab !== tab) setActiveTab(tab);
   }
+
+
   return (
     <div>
       {/* Banner movie */}
@@ -61,10 +64,15 @@ const DetailMoviePage = ({ auth, movie, review, cast, getDetailMovieById, getRev
             <span>{movie.vote_count} votes</span>
             <br /> <br />
             <p className="lead">{movie.tagline}</p>
-            <p className="lead">
-              <Button color="primary mr-4">Watch Trailer</Button>
+            <div className="lead">
+              {video.length === 0 ? null : (
+                <Button className="mr-3" color="primary">
+                  <a className="text-white text-decoration-none" href={`${videoUrl}${video[0].key}`} target="blank">Watch Trailer</a>
+                </Button>
+              )}
+
               <Button color="primary">Add To Watch List</Button>
-            </p>
+            </div>
           </div>
         </Container>
 
@@ -152,7 +160,7 @@ const DetailMoviePage = ({ auth, movie, review, cast, getDetailMovieById, getRev
             </div>
           </TabPane>
 
-          {/* Review */}
+          {/* Review Form*/}
           < TabPane tabId="3" >
             <div className="mt-3 detail-page-content">
               {auth ? (<Media className="mt-1">
@@ -164,15 +172,23 @@ const DetailMoviePage = ({ auth, movie, review, cast, getDetailMovieById, getRev
                   />
                 </Media>
                 <Media body>
-                  <Media heading>rate</Media>
-                  <textarea
-                    className="form-control"
-                    placeholder="leave comment here"
-                  ></textarea>
+                  <Media heading>Name</Media>
+                  <div className="review-form">
+                    <form>
+                      <textarea
+                        className="form-control mb-3"
+                        placeholder="leave comment here"
+                      ></textarea>
+                      <div className="d-flex justify-content-end">
+                        <Button color="primary" size="sm">Add Review</Button>
+                      </div>
+                    </form>
+                  </div>
                 </Media>
               </Media>) : ""}
-              
 
+
+              {/* Review Movie */}
               <div className="mt-4">
                 {review !== 0 ? review.map((review) => (
                   <div sm="12" key={review.id}>
@@ -212,6 +228,7 @@ const mapStateToProps = (state) => {
     review: state.homePage.review,
     cast: state.homePage.cast,
     auth: state.users.isAuthentificated,
+    video: state.homePage.video
   };
 };
 
@@ -220,6 +237,7 @@ const mapDispatchToProps = (dispatch) => {
     getReviewMovieById: (id) => dispatch(getReviewMovieById(id)),
     getDetailMovieById: (id) => dispatch(getDetailMovieById(id)),
     getCastMovieById: (id) => dispatch(getCastMovieById(id)),
+    getVideoMovieById: (id) => dispatch(getVideoMovieById(id)),
   };
 }
 

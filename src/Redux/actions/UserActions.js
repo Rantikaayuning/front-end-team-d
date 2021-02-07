@@ -1,4 +1,4 @@
-import { SIGN_UP, SIGN_IN, SIGN_OUT, FAILED } from "../types/UserPage";
+import { SIGN_UP, SIGN_IN, SIGN_OUT, FAILED, GET_USER } from "../types/UserPage";
 import axios from "axios";
 
 const baseUrl = 'https://bbm-warehouse.herokuapp.com'
@@ -26,6 +26,19 @@ export const postSignIn = (body) => (dispatch) => {
           type: SIGN_IN,
           payload: response.data.message,
           token: localStorage.setItem("token", response.data.data.token),
+        });
+      }
+    });
+};
+
+export const getUserDetail = (body, id) => (dispatch) => {
+  axios
+    .get(`${baseUrl}/users`, { ...body, id })
+    .then((response) => {
+      if (response.status === 200) {
+        dispatch({
+          type: GET_USER,
+          payload: response.data.data,
         });
       }
     });

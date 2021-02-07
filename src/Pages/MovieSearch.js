@@ -16,7 +16,7 @@ const Search = (props) => {
     <>
       <Jumbotron fluid>
         <Container fluid>
-            <Title className="display-5">Movie Search Result :</Title>
+            <Title className="display-5">Search Movie</Title>
         </Container>
       </Jumbotron>
       <Container>

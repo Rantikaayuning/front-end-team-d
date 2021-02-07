@@ -21,7 +21,7 @@ function App() {
         <Route exact path='/user-setting-page' component={UserSettingPage}/>
         <Route exact path='/search-page' component={Search}/>
         <Route exact path='/other-movie' component={OtherMoviePage}/>
-        <Route exact path='/other-movie/detail' component={OtherMovieDetail}/>
+        <Route exact path='/other-movie/:id' component={OtherMovieDetail}/>
       </Switch>   
       <Footer />
     </Router>

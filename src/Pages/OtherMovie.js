@@ -6,18 +6,18 @@ import { Col, Row, UncontrolledCarousel, Spinner } from "reactstrap";
 import { Title, StyledCard, StyledP, StyledContainer, StyledCardBody } from '../Assets/Styles/styled';
 
 const OtherMoviePage = () => {
-    const [movies, setMovies] = useState([])
+  const [movies, setMovies] = useState([])
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios(`https://bbm-warehouse.herokuapp.com/movies?page=1`);
-            const movie = result.data.movies
-            setMovies(movie);
-            console.log('result users =>', movie);
-        }
-        fetchData();
-    }, []);
-
+  useEffect(() => {
+      const fetchData = async () => {
+          const result = await axios(`https://bbm-warehouse.herokuapp.com/movies?page=1`);
+          const movie = result.data.movies
+          setMovies(movie);
+          console.log('result users =>', movie);
+      }
+      fetchData();
+  }, []);
+  
   return (
     <>
       <style>
@@ -37,11 +37,10 @@ const OtherMoviePage = () => {
         {movies !== 0 ? movies.map((movie) => (
             <Col md={3} key={movie._id} >
             <Link
-            to={`/other-movie/detail`}
+            to={`/other-movie/${movie._id}`}
             style={{ textDecoration: "none", color: "black" }}
             >
             <StyledCard>
-                {/* <StyledImage src={`${imgUrl}${movie.poster_path}`} /> */}
                 <StyledCardBody>
                 <Title>{movie.title}</Title>
                 <StyledP>Genre : {movie.genre}</StyledP>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import ReactStars from "react-rating-stars-component"
 
@@ -41,6 +41,15 @@ const DetailMoviePage = ({ auth, movie, review, cast, video, getDetailMovieById,
     if (activeTab !== tab) setActiveTab(tab);
   }
 
+  const addToWatchlist = (movie) => {
+    if (localStorage.getItem("watchlist")) {
+      let watchlist = JSON.parse(localStorage.getItem("watchlist"));
+      watchlist = [...watchlist, movie];
+      localStorage.setItem("watchlist", JSON.stringify(watchlist));
+    } else {
+      localStorage.setItem("watchlist", JSON.stringify([movie]));
+    }
+  };
 
   return (
     <div>
@@ -70,8 +79,7 @@ const DetailMoviePage = ({ auth, movie, review, cast, video, getDetailMovieById,
                   <a className="text-white text-decoration-none" href={`${videoUrl}${video[0].key}`} target="blank">Watch Trailer</a>
                 </Button>
               )}
-
-              <Button color="primary">Add To Watch List</Button>
+              <Button color="primary" onClick={() => {addToWatchlist(movie)}}>Add To Watch List</Button>
             </div>
           </div>
         </Container>

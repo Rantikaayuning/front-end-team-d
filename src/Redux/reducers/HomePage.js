@@ -19,7 +19,7 @@ let initialState = {
     movie: [],
     review: [],
     cast: [],
-    value: '',
+    value: [],
     video: []
 }
 

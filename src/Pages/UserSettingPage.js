@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import { StyledProfile, StyledWatchlist, GroupButton, StyledDetail } from '../Assets/Styles/styled';
+import { StyledProfile, StyledWatchlist, GroupButton, StyledDetail, StyledBackground } from '../Assets/Styles/styled';
 import imgProfile from '../Assets/Images/noprofile.png'
 
 const UserSettingPage = () => {
@@ -10,14 +10,13 @@ const UserSettingPage = () => {
     const [password, setPassword] = useState('');
     const [image, setImage] = useState(null);
     return (
-        <div>
+        <StyledBackground>
             <StyledProfile>
                 <StyledDetail>
                     <img src={imgProfile} alt='profilepage' />
                     <p>Username :</p>
                     <p>email :</p>
                     <Link to='/' ><GroupButton outline color='secondary'>Back</GroupButton></Link>
-                    <Link to='/user-setting-page' ><GroupButton outline color='primary'>Update Profile</GroupButton></Link>
                 </StyledDetail>
                 <StyledWatchlist>
                 <h1 style={{fontWeight:'600'}}>Profile</h1>
@@ -77,7 +76,7 @@ const UserSettingPage = () => {
             </form>
                 </StyledWatchlist>
             </StyledProfile>
-        </div>
+        </StyledBackground>
     )
 }
 

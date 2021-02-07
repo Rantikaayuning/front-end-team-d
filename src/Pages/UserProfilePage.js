@@ -1,10 +1,27 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from "react-router-dom";
-import { Card, CardTitle, CardSubtitle } from 'reactstrap';
-import { StyledProfile, StyledWatchlist, GroupButton, StyledDetail, StyledBackground } from '../Assets/Styles/styled';
+import {Container, Button, Row, Col, CardBody } from 'reactstrap';
+import { StyledProfile, StyledWatchlist, GroupButton, StyledDetail, StyledBackground, Title, StyledP, WatchlistCard } from '../Assets/Styles/styled';
 import imgProfile from '../Assets/Images/noprofile.png'
 
 const UserProfilePage = () => {
+    const imgUrl = "https://image.tmdb.org/t/p/w500";
+  
+    const [movies, setMovies] = useState(null);
+  
+    useEffect(() => {
+      if (localStorage.getItem("watchlist")) {
+        setMovies(JSON.parse(localStorage.getItem("watchlist")));
+      }
+    }, []);
+  
+    const handleDelete = (id) => {
+      let watchlist = JSON.parse(localStorage.getItem("watchlist"));
+      watchlist = [...watchlist.filter((movie) => movie.id !== id)];
+      localStorage.setItem("watchlist", JSON.stringify(watchlist));
+      setMovies(watchlist);
+    };
+
     return (
         <StyledBackground>
             <StyledProfile>
@@ -16,12 +33,27 @@ const UserProfilePage = () => {
                     <Link to='/user-setting-page' ><GroupButton outline color='primary'>Update Profile</GroupButton></Link>
                 </StyledDetail>
                 <StyledWatchlist>
-                    <h5>Watchlist</h5>
-                    <Card>
-                        <img width="100%" src={imgProfile} alt="Card cap" />
-                        <CardTitle tag="h6">Movie title</CardTitle>
-                        <CardSubtitle tag="h6" className="mb-2 text-muted">Genre</CardSubtitle>
-                    </Card>
+                <Container>
+                {movies ? (
+                    <Row>
+                        {movies.map((movie) => (
+                        <Col md={4} key={movie.id} >
+                        <WatchlistCard>
+                            <img src={`${imgUrl}${movie.poster_path}`} alt='movie poster'/>
+                            <CardBody>
+                                <Title>{movie.title}</Title>
+                                <StyledP>{movie.release_date}</StyledP>
+                                <StyledP>
+                                <Link to={`/detail-movie/${movie.id}`}><Button outline color='info'>Detail</Button></Link>
+                                <Button outline color='danger' onClick={() => {handleDelete(movie.id)}}>Remove</Button>
+                                </StyledP>
+                            </CardBody>
+                        </WatchlistCard>
+                        </Col>
+                    ))}
+                    </Row>
+                ) : '' }
+                </Container>
                 </StyledWatchlist>
             </StyledProfile>
         </StyledBackground>

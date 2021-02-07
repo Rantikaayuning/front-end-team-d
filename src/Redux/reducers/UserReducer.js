@@ -1,4 +1,4 @@
-import { SIGN_UP, SIGN_IN, SIGN_OUT } from "../types/UserPage";
+import { SIGN_UP, SIGN_IN, SIGN_OUT, FAILED } from "../types/UserPage";
 
 const initialState = {
   signUp: null,
@@ -28,6 +28,13 @@ const userReducer = (state = initialState, action) => {
         token: undefined,
         isAuthentificated: false,
       };
+
+      case FAILED :
+        return{
+          ...state,
+          token: undefined,
+        isAuthentificated: false,
+        }
     default:
       break;
   }

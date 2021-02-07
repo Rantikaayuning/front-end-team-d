@@ -1,9 +1,11 @@
-import { SIGN_UP, SIGN_IN, SIGN_OUT } from "../types/UserPage";
+import { SIGN_UP, SIGN_IN, SIGN_OUT, FAILED } from "../types/UserPage";
 import axios from "axios";
+
+const baseUrl = 'https://bbm-warehouse.herokuapp.com'
 
 export const postSignUp = (body) => (dispatch) => {
   axios
-    .post("https://bbm-warehouse.herokuapp.com/register", body)
+    .post(`https://cors-anywhere.herokuapp.com/${baseUrl}/register`, {...body})
     .then((response) => {
       if (response.status === 200) {
         dispatch({
@@ -17,7 +19,7 @@ export const postSignUp = (body) => (dispatch) => {
 
 export const postSignIn = (body) => (dispatch) => {
   axios
-    .post("https://bbm-warehouse.herokuapp.com/login", body)
+    .post(`https://cors-anywhere.herokuapp.com/${baseUrl}/login`, {...body})
     .then((response) => {
       if (response.status === 200) {
         dispatch({
@@ -32,4 +34,9 @@ export const postSignIn = (body) => (dispatch) => {
 export const logout = () => (dispatch) => {
   localStorage.removeItem("token");
   dispatch({ type: SIGN_OUT });
+};
+
+export const failed = () => (dispatch) => {
+  dispatch({ type: FAILED});
+  alert("The email address or password is incorrect.")
 };

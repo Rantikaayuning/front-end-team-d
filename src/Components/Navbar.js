@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
 import { useDispatch } from "react-redux";
 import {Dropdown,DropdownToggle,DropdownMenu,DropdownItem,} from "reactstrap";
-import imgProfile from "../Assets/Images/noprofile.png";
 
-import { postSignUp, postSignIn, logout } from "../Redux/actions/UserActions";
+import imgProfile from "../Assets/Images/noprofile.png";
+import { postSignUp, postSignIn, logout, failed} from "../Redux/actions/UserActions";
 import { getSearchValue } from "../Redux/actions/HomePage";
 import { getValue } from "../Redux/types/HomePage";
 import BrandLogo from "../Assets/Images/brand-logo.png";
@@ -20,6 +20,8 @@ const MODAL_SIGNUP = 1;
 const MODAL_LOGIN = 2;
 
 const Navbar = ({auth, value, getSearchValue, getValue}) => {
+
+  //SEARCH
   const [search, setSearch] = useState(value)
 
   const handleChange = (e) => {
@@ -33,6 +35,8 @@ const Navbar = ({auth, value, getSearchValue, getValue}) => {
 
   console.log('value=', value);
 
+
+  //LOGIN & REGISTRATION
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [whichModal, setWhichModal] = useState(null);
   const [userData, setUserData] = useState({
@@ -40,12 +44,12 @@ const Navbar = ({auth, value, getSearchValue, getValue}) => {
     email: "",
     password: "",
   });
+  
   const [userSignin, setUserSignin] = useState({
     username: "",
     password: "",
     token: "",
   });
-
 
   const dispatch = useDispatch();
 
@@ -152,16 +156,16 @@ const Navbar = ({auth, value, getSearchValue, getValue}) => {
         username: userSignin.username,
         password: userSignin.password,
       };
-
       if (
         body.username != userData.username ||
-        body.password != userData.password
+        body.password != userData.password || 
+        body.username === "" || body.password === ""
       ) {
-        alert("The email address or password is incorrect.");
-      } else {
+        dispatch(failed())
+      } else{
         dispatch(postSignIn(body));
-        setIsModalOpen(false);
-      }
+        setIsModalOpen(false)}
+      
     };
 
     if (whichModal === MODAL_LOGIN) {
@@ -181,19 +185,9 @@ const Navbar = ({auth, value, getSearchValue, getValue}) => {
             <img src={Images} />
             <form className="home-form" onSubmit={toggleModal}>
               <div>Username</div>
-              <input
-                type="text"
-                placeholder="Username"
-                name="username"
-                onChange={(e) => handleSignIn(e)}
-              />
+              <input type="text" placeholder="Username" name="username" onChange={(e) => handleSignIn(e)} />
               <div>Password</div>
-              <input
-                type="password"
-                placeholder="Password"
-                name="password"
-                onChange={(e) => handleSignIn(e)}
-              />
+              <input type="password" placeholder="Password" name="password" onChange={(e) => handleSignIn(e)}/>
               <button
                 className="home-form-submit"
                 type="submit"
@@ -229,32 +223,16 @@ const Navbar = ({auth, value, getSearchValue, getValue}) => {
               X
             </button>
           </div>
+        
           <div className="home-signup">
             <img src={Images} />
-            <form className="home-signup-form" onSubmit={handleSignIn}>
+            <form className="home-signup-form">
               <div>Username</div>
-              <input
-                type="text"
-                placeholder="Username"
-                name="username"
-                onChange={(e) => handleChange(e)}
-              />
-
+              <input type="text" placeholder="Username" name="username" onChange={(e) => handleChange(e)} />
               <div>Email</div>
-              <input
-                type="email"
-                placeholder="Email"
-                name="email"
-                onChange={(e) => handleChange(e)}
-              />
-
+              <input type="email" placeholder="Email" name="email" onChange={(e) => handleChange(e)} />
               <div>Password</div>
-              <input
-                type="password"
-                placeholder="Password"
-                name="password"
-                onChange={(e) => handleChange(e)}
-              />
+              <input type="password" placeholder="Password" name="password" onChange={(e) => handleChange(e)}/>
 
               <button
                 className="home-form-submit"
@@ -284,5 +262,6 @@ const mapDispatchToProps = dispatch => {
       getSearchValue: (value) => dispatch(getSearchValue(value))
   }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

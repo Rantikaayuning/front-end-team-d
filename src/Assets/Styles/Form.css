@@ -92,6 +92,7 @@
 
 .redirect-signup {
   cursor: pointer;
+  font-weight: bold;
   color: #fe024e;
 }
 

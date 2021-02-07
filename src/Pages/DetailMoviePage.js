@@ -196,7 +196,6 @@ const DetailMoviePage = ({ auth, movie, review, cast, getDetailMovieById, getRev
                     </Media>
                   </div>
                 )) : ""}
-
               </div>
             </div>
           </TabPane>

@@ -7,6 +7,7 @@ export const GET_MOVIE_SEARCH = 'GET_MOVIE_SEARCH';
 export const GET_DETAIL_MOVIE = "GET_DETAIL_MOVIE";
 export const GET_REVIEW_MOVIE = "GET_REVIEW_MOVIE";
 export const GET_CAST_MOVIE = "GET_CAST_MOVIE";
+export const GET_VIDEO_MOVIE = "GET_VIDEO_MOVIE";
 
 
 export const getMovieReq = () => {
@@ -63,9 +64,16 @@ export const getCastMovie = (payload) => {
     };
 };
 
-export const getMovieSearch = (payload) => {
+export const getValue = (payload) => {
     return {
         type: GET_MOVIE_SEARCH,
+        payload,
+    }
+}
+
+export const getVideoMovie = (payload) => {
+    return {
+        type: GET_VIDEO_MOVIE,
         payload,
     }
 }

@@ -4,16 +4,16 @@ import { ButtonToolbar, Button, ButtonGroup } from 'reactstrap';
 import { StyledNavbar } from '../Assets/Styles/styled';
 import { getMovies } from '../Redux/actions/HomePage';
 
-const PaginationMovie = (props) => {
+const PaginationMovie = ({getMovies}) => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    props.getMovies();
-  }, [])
+    getMovies();
+  }, [getMovies])
 
   const handlePage = (pg) => {
     setPage(pg);
-    props.getMovies(pg)
+    getMovies(pg)
   }
 
   return (
@@ -36,18 +36,10 @@ const PaginationMovie = (props) => {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    movies: state.homePage.movies,
-    genres: state.homePage.genres,
-    value: state.homePage.value
-  }
-}
-
 const mapDispatchToProps = dispatch => {
   return {
     getMovies: (page) => dispatch(getMovies(page)),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PaginationMovie);
+export default connect(null, mapDispatchToProps)(PaginationMovie);

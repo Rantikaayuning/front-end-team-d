@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button, Card, CardImg } from 'reactstrap';
+import { Button, Card, CardBody, CardImg, Container } from 'reactstrap';
 import background from '../Images/background.jpg';
 
 export const StyledNavbar = styled.div`
@@ -9,7 +9,7 @@ export const StyledNavbar = styled.div`
     padding: 10px;
 `
 export const StyledImg = styled.img`
-    width: 150px;
+    width: 50px;
     padding: 0;
 `
 export const StyledGenre = styled.div`
@@ -81,12 +81,15 @@ export const StyledDetail = styled.div`
     border-radius: 20px;
 `
 export const StyledBackground = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     background-image: url(${background});
     padding: 20px;
     background-position: contain;
-    height: 300px;
-    margin-bottom: 300px;
-    margin-top: 50px;
+    height: max-content;
+    margin-bottom: 50px;
+    margin-top: 20px;
 `
 export const StyledCard = styled(Card)`
     margin-bottom: 30px;
@@ -106,4 +109,30 @@ export const StyledImage= styled(CardImg)`
 `
 export const StyledP = styled.p`
     text-align: center;
+`
+export const StyledContainer = styled(Container)`
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+`
+export const StyledCardBody = styled(CardBody)`
+    background-color: white;
+    &:hover {
+        background-color: #f2f1e4;
+    }
+`
+export const WatchlistCard = styled(Card)`
+    img {
+        height: 3100%;
+    }
+    width: 250px;
+    height: max-content;
+    margin-bottom: 10px;
+    &:hover {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        width: 251px;
+        height: max-content;
+    }
 `

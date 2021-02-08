@@ -11,7 +11,6 @@ import {
 import axios from 'axios';
 import {
   movieUrl,
-  nowPlaying,
   genreListUrl,
   apiKey,
 } from "../../Utils/constants";
@@ -20,11 +19,12 @@ export const getMovies = (page = 1) => {
   return (dispatch) => {
     dispatch(getMovieReq);
     return axios
-      .get(`${movieUrl}${nowPlaying}&page=${page}`)
+      .get(`${movieUrl}movie/popular?${apiKey}&language=en-US&page=${page}`)
       .then(response => {
         const movies = response.data.results
         dispatch(getMovieSuccess(movies))
       })
+      .catch((err) => console.log(err));
   };
 };
 
@@ -37,7 +37,8 @@ export const getGenreList = () => {
           type: GET_MOVIE_GENRE,
           payload: res.data.genres,
         });
-      });
+      })
+      .catch((err) => console.log(err));
   };
 };
 
@@ -52,7 +53,8 @@ export const getMovieByGenre = (id) => {
           type: GET_BY_GENRE,
           payload: res.data.results,
         });
-      });
+      })
+      .catch((err) => console.log(err));
   };
 };
 
@@ -67,7 +69,8 @@ export const getSearchValue = (value) => {
           type: GET_MOVIE_SEARCH,
           payload: res.data.results,
         });
-      });
+      })
+      .catch((err) => console.log(err));
   };
 };
 
@@ -79,7 +82,8 @@ export const getDetailMovieById = (id) => {
           type: GET_DETAIL_MOVIE,
           payload: res.data,
         });
-      });
+      })
+      .catch((err) => console.log(err));
   };
 };
 
@@ -91,7 +95,8 @@ export const getReviewMovieById = (id) => {
           type: GET_REVIEW_MOVIE,
           payload: res.data.results,
         });
-      });
+      })
+      .catch((err) => console.log(err));
   };
 };
 
@@ -103,7 +108,8 @@ export const getCastMovieById = (id) => {
           type: GET_CAST_MOVIE,
           payload: res.data.cast,
         });
-      });
+      })
+      .catch((err) => console.log(err));
   };
 };
 
@@ -115,7 +121,8 @@ export const getVideoMovieById = (id) => {
           type: GET_VIDEO_MOVIE,
           payload: res.data.results,
         });
-      });
+      })
+      .catch((err) => console.log(err));
   };
 };
 

@@ -1,5 +1,5 @@
 import "../Assets/Styles/FooterStyle.css";
-import imgLogo from "../Assets/Images/footer-brand.png";
+import imgLogo from "../Assets/Images/brand-logo.png";
 import imgGplay from "../Assets/Images/googleplay .png";
 import imgApp from "../Assets/Images/appstore.png";
 import imgFb from "../Assets/Images/face.png";
@@ -11,7 +11,7 @@ export default function Footer() {
     <div className="footer">
       <div className="footer-container">
         <div className="footer-logo">
-          <img src={imgLogo} alt="brand logo" />
+          <img src={imgLogo} alt="brand logo" /><p>BBM Warehouse</p>
           <p>
           Unlimited movies and more.
           Watch anywhere. Cancel anytime.

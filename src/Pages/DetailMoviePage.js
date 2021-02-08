@@ -18,7 +18,13 @@ const DetailMoviePage = ({ auth, movie, review, cast, video, getDetailMovieById,
     getReviewMovieById(id);
     getCastMovieById(id);
     getVideoMovieById(id);
-  }, [])
+  }, [
+    getDetailMovieById,
+    getReviewMovieById,
+    getCastMovieById,
+    getVideoMovieById,
+    id
+  ])
 
   const renderImg = (img) => {
     let rendered =
@@ -41,6 +47,15 @@ const DetailMoviePage = ({ auth, movie, review, cast, video, getDetailMovieById,
     if (activeTab !== tab) setActiveTab(tab);
   }
 
+  const addToWatchlist = (movie) => {
+    if (localStorage.getItem("watchlist")) {
+      let watchlist = JSON.parse(localStorage.getItem("watchlist"));
+      watchlist = [...watchlist, movie];
+      localStorage.setItem("watchlist", JSON.stringify(watchlist));
+    } else {
+      localStorage.setItem("watchlist", JSON.stringify([movie]));
+    }
+  };
 
   return (
     <div>
@@ -89,6 +104,7 @@ const DetailMoviePage = ({ auth, movie, review, cast, video, getDetailMovieById,
             <NavLink
               className={classnames({ active: activeTab === '1' })}
               onClick={() => { toggle('1'); }}
+              style={{cursor: 'pointer'}}
             >
               Overview
           </NavLink>
@@ -97,6 +113,7 @@ const DetailMoviePage = ({ auth, movie, review, cast, video, getDetailMovieById,
             <NavLink
               className={classnames({ active: activeTab === '2' })}
               onClick={() => { toggle('2'); }}
+              style={{cursor: 'pointer'}}
             >
               Character
           </NavLink>
@@ -105,6 +122,7 @@ const DetailMoviePage = ({ auth, movie, review, cast, video, getDetailMovieById,
             <NavLink
               className={classnames({ active: activeTab === '3' })}
               onClick={() => { toggle('3'); }}
+              style={{cursor: 'pointer'}}
             >
               Review
           </NavLink>

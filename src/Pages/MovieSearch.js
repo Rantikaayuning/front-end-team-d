@@ -6,22 +6,22 @@ import { Container, Spinner, CardBody, Col, Row, Jumbotron } from "reactstrap";
 import { imgUrl } from '../Utils/constants';
 import { Title, StyledCard, StyledImage, StyledP } from '../Assets/Styles/styled';
 
-const Search = (props) => {
+const Search = ({value, getMovies}) => {
 
     useEffect(() => {
-        getMovies(props.value);
-      }, [getMovies])
+        getMovies(value);
+      }, [getMovies, value])
 
   return (
     <>
       <Jumbotron fluid>
         <Container fluid>
-            <Title className="display-5">Movie Search Result :</Title>
+            <Title className="display-5">Search Movie</Title>
         </Container>
       </Jumbotron>
       <Container>
           <Row>
-          {props.value !== 0 ? props.value.map((movie) => (
+          {value !== 0 ? value.map((movie) => (
           <Col md={3} key={movie.id} >
               <Link
               to={`/detail-movie/${movie.id}`}

@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import {Dropdown,DropdownToggle,DropdownMenu,DropdownItem,} from "reactstrap";
 
 import imgProfile from "../Assets/Images/noprofile.png";
-import { postSignUp, postSignIn, logout, failed} from "../Redux/actions/UserActions";
+import { postSignUp, postSignIn, logout } from "../Redux/actions/UserActions";
 import { getSearchValue } from "../Redux/actions/HomePage";
 import { getValue } from "../Redux/types/HomePage";
 import BrandLogo from "../Assets/Images/brand-logo.png";
@@ -19,7 +19,7 @@ import Images from "../Assets/Images/brand-logo.png";
 const MODAL_SIGNUP = 1;
 const MODAL_LOGIN = 2;
 
-const Navbar = ({auth, value, getSearchValue, getValue}) => {
+const Navbar = ({auth, value, getSearchValue }) => {
 
   //SEARCH
   const [search, setSearch] = useState(value)
@@ -32,9 +32,6 @@ const Navbar = ({auth, value, getSearchValue, getValue}) => {
     e.preventDefault()
     getSearchValue(search)
   }
-
-  console.log('value=', value);
-
 
   //LOGIN & REGISTRATION
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -75,7 +72,7 @@ const Navbar = ({auth, value, getSearchValue, getValue}) => {
         {auth ? (
             <Dropdown isOpen={dropdownOpen} toggle={toggle}>
               <DropdownToggle caret className="dropdowm">
-                <img src={imgProfile} />
+                <img src={imgProfile} alt='profile'/>
               </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem header>Username</DropdownItem>
@@ -156,16 +153,8 @@ const Navbar = ({auth, value, getSearchValue, getValue}) => {
         username: userSignin.username,
         password: userSignin.password,
       };
-      if (
-        body.username != userData.username ||
-        body.password != userData.password || 
-        body.username === "" || body.password === ""
-      ) {
-        dispatch(failed())
-      } else{
         dispatch(postSignIn(body));
-        setIsModalOpen(false)}
-      
+        setIsModalOpen(false)
     };
 
     if (whichModal === MODAL_LOGIN) {
@@ -182,7 +171,7 @@ const Navbar = ({auth, value, getSearchValue, getValue}) => {
             </button>
           </div>
           <div className="home-login">
-            <img src={Images} />
+            <img src={Images} alt='profile'/>
             <form className="home-form" onSubmit={toggleModal}>
               <div>Username</div>
               <input type="text" placeholder="Username" name="username" onChange={(e) => handleSignIn(e)} />
@@ -225,7 +214,7 @@ const Navbar = ({auth, value, getSearchValue, getValue}) => {
           </div>
         
           <div className="home-signup">
-            <img src={Images} />
+            <img src={Images} alt='profile'/>
             <form className="home-signup-form">
               <div>Username</div>
               <input type="text" placeholder="Username" name="username" onChange={(e) => handleChange(e)} />
@@ -248,6 +237,7 @@ const Navbar = ({auth, value, getSearchValue, getValue}) => {
     }
  }
 }
+
 
 const mapStateToProps = state => {
   return {

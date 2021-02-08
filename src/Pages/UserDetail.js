@@ -13,8 +13,8 @@ const UserDetail = ({ user, getUserDetail }) => {
 
     return (
         <div>
-            {users !== 0 ? users.map((users))}
-            <h3>{user.username}</h3>
+            {/* {users !== 0 ? users.map((users))}
+            <h3>{user.username}</h3> */}
         </div>
     )
 

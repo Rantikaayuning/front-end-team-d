@@ -25,7 +25,7 @@ export const postSignIn = (body) => (dispatch) => {
         dispatch({
           type: SIGN_IN,
           payload: response.data.message,
-          token: localStorage.setItem("token", response.data.data.token),
+          token: localStorage.setItem("token", response.data.token),
         });
       }
     });

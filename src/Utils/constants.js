@@ -10,7 +10,7 @@ export const videoUrl = "https://www.youtube.com/watch?v=";
 
 export const items = [
   {
-    src: 'https://image.tmdb.org/t/p/w1280/kf456ZqeC45XTvo6W9pW5clYKfQ.jpg',
+    src: 'https://image.tmdb.org/t/p/w1280/cjaOSjsjV6cl3uXdJqimktT880L.jpg',
     altText: 'Slide 1',
     key: '1'
   },
@@ -20,7 +20,7 @@ export const items = [
     key: '2'
   },
   {
-    src: 'https://image.tmdb.org/t/p/w1280/cjaOSjsjV6cl3uXdJqimktT880L.jpg',
+    src: 'https://image.tmdb.org/t/p/w1280/9xeEGUZjgiKlI69jwIOi0hjKUIk.jpg',
     altText: 'Slide 3',
     key: '3'
   }

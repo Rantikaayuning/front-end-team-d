@@ -86,7 +86,7 @@ const DetailMoviePage = ({ auth, movie, review, cast, video, getDetailMovieById,
                 </Button>
               )}
               {auth ? (
-                <Button color="primary" onClick={addToWatchlist}>Add To Watch List</Button>
+                <Button color="primary" onClick={() => { addToWatchlist(movie) }}>Add To Watch List</Button>
               ) :
                 (<Button color="primary" disabled>Add To Watch List</Button>)
               }

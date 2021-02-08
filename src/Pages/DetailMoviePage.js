@@ -6,18 +6,25 @@ import ReactStars from "react-rating-stars-component"
 import { TabContent, TabPane, Nav, NavItem, NavLink, Button, Row, Col, Jumbotron, Container, Media } from 'reactstrap';
 import classnames from 'classnames';
 
-import { getDetailMovieById, getReviewMovieById, getCastMovieById } from "../Redux/actions/HomePage";
-import { imgUrl } from "../Utils/constants";
+import { getDetailMovieById, getReviewMovieById, getCastMovieById, getVideoMovieById } from "../Redux/actions/HomePage";
+import { imgUrl, videoUrl } from "../Utils/constants";
 import "../Assets/Styles/DetailPage.css"
 
-const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMovieById, getCastMovieById }) => {
+const DetailMoviePage = ({ auth, movie, review, cast, video, getDetailMovieById, getReviewMovieById, getCastMovieById, getVideoMovieById }) => {
   const { id } = useParams();
 
   useEffect(() => {
     getDetailMovieById(id);
     getReviewMovieById(id);
     getCastMovieById(id);
-  }, [getDetailMovieById, getReviewMovieById, getCastMovieById])
+    getVideoMovieById(id);
+  }, [
+    getDetailMovieById,
+    getReviewMovieById,
+    getCastMovieById,
+    getVideoMovieById,
+    id
+  ])
 
   const renderImg = (img) => {
     let rendered =
@@ -39,6 +46,17 @@ const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMov
   const toggle = tab => {
     if (activeTab !== tab) setActiveTab(tab);
   }
+
+  const addToWatchlist = (movie) => {
+    if (localStorage.getItem("watchlist")) {
+      let watchlist = JSON.parse(localStorage.getItem("watchlist"));
+      watchlist = [...watchlist, movie];
+      localStorage.setItem("watchlist", JSON.stringify(watchlist));
+    } else {
+      localStorage.setItem("watchlist", JSON.stringify([movie]));
+    }
+  };
+
   return (
     <div>
       {/* Banner movie */}
@@ -61,10 +79,14 @@ const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMov
             <span>{movie.vote_count} votes</span>
             <br /> <br />
             <p className="lead">{movie.tagline}</p>
-            <p className="lead">
-              <Button color="primary mr-4">Watch Trailer</Button>
-              <Button color="primary">Add To Watch List</Button>
-            </p>
+            <div className="lead">
+              {video.length === 0 ? null : (
+                <Button className="mr-3" color="primary">
+                  <a className="text-white text-decoration-none" href={`${videoUrl}${video[0].key}`} target="blank">Watch Trailer</a>
+                </Button>
+              )}
+              <Button color="primary" onClick={() => {addToWatchlist(movie)}}>Add To Watch List</Button>
+            </div>
           </div>
         </Container>
 
@@ -78,6 +100,7 @@ const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMov
             <NavLink
               className={classnames({ active: activeTab === '1' })}
               onClick={() => { toggle('1'); }}
+              style={{cursor: 'pointer'}}
             >
               Overview
           </NavLink>
@@ -86,6 +109,7 @@ const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMov
             <NavLink
               className={classnames({ active: activeTab === '2' })}
               onClick={() => { toggle('2'); }}
+              style={{cursor: 'pointer'}}
             >
               Character
           </NavLink>
@@ -94,6 +118,7 @@ const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMov
             <NavLink
               className={classnames({ active: activeTab === '3' })}
               onClick={() => { toggle('3'); }}
+              style={{cursor: 'pointer'}}
             >
               Review
           </NavLink>
@@ -152,11 +177,10 @@ const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMov
             </div>
           </TabPane>
 
-          {/* Review */}
+          {/* Review Form*/}
           < TabPane tabId="3" >
             <div className="mt-3 detail-page-content">
-
-              <Media className="mt-1">
+              {auth ? (<Media className="mt-1">
                 <Media className="mr-3" left middle >
                   <img
                     className="img-card-review"
@@ -165,14 +189,23 @@ const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMov
                   />
                 </Media>
                 <Media body>
-                  <Media heading>rate</Media>
-                  <textarea
-                    className="form-control"
-                    placeholder="leave comment here"
-                  ></textarea>
+                  <Media heading>Name</Media>
+                  <div className="review-form">
+                    <form>
+                      <textarea
+                        className="form-control mb-3"
+                        placeholder="leave comment here"
+                      ></textarea>
+                      <div className="d-flex justify-content-end">
+                        <Button color="primary" size="sm">Add Review</Button>
+                      </div>
+                    </form>
+                  </div>
                 </Media>
-              </Media>
+              </Media>) : ""}
 
+
+              {/* Review Movie */}
               <div className="mt-4">
                 {review !== 0 ? review.map((review) => (
                   <div sm="12" key={review.id}>
@@ -191,13 +224,11 @@ const DetailMoviePage = ({ movie, review, cast, getDetailMovieById, getReviewMov
                           value={review.author_details.rating / 2}
                           edit={false}
                           isHalf={true} />
-                        <div>{review.author_details.rating}</div>
                         <p>{review.content.slice(0, 450)} ...</p>
                       </Media>
                     </Media>
                   </div>
                 )) : ""}
-
               </div>
             </div>
           </TabPane>
@@ -212,7 +243,9 @@ const mapStateToProps = (state) => {
   return {
     movie: state.homePage.movie,
     review: state.homePage.review,
-    cast: state.homePage.cast
+    cast: state.homePage.cast,
+    auth: state.users.isAuthentificated,
+    video: state.homePage.video
   };
 };
 
@@ -221,6 +254,7 @@ const mapDispatchToProps = (dispatch) => {
     getReviewMovieById: (id) => dispatch(getReviewMovieById(id)),
     getDetailMovieById: (id) => dispatch(getDetailMovieById(id)),
     getCastMovieById: (id) => dispatch(getCastMovieById(id)),
+    getVideoMovieById: (id) => dispatch(getVideoMovieById(id)),
   };
 }
 

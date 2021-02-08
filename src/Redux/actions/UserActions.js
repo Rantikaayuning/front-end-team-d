@@ -24,7 +24,7 @@ export const postSignIn = (body) => (dispatch) => {
       if (response.status === 200) {
         dispatch({
           type: SIGN_IN,
-          payload: response.data.message,
+          payload: response.data.data,
           token: localStorage.setItem("token", response.data.data.token),
         });
       }

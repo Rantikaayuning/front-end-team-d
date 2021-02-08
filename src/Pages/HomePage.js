@@ -6,6 +6,7 @@ import { imgUrl, items } from '../Utils/constants';
 import { Spinner, CardBody, Col, Container, Row, UncontrolledCarousel, Button } from "reactstrap";
 import { StyledGenre, Title, GroupButton, StyledCard, StyledImage, StyledP } from '../Assets/Styles/styled';
 import PaginationMovie from '../Components/Pagination';
+import userDetail from "../Pages/UserDetail"
 
 const HomePage = ({ getGenreList, getMovieByGenre, getMovies, movies, genres }) => {
 
@@ -34,6 +35,7 @@ const HomePage = ({ getGenreList, getMovieByGenre, getMovies, movies, genres }) 
         <p>Browse by Category</p>
       </StyledGenre>
       <Container >
+        <userDetail></userDetail>
         {genres.length !== 0 ? (
           genres.map((genre) => (
             <GroupButton outline color="info" key={genre.id} onClick={() => getMovieByGenre(genre.id)}>{genre.name}</GroupButton>
@@ -62,7 +64,7 @@ const HomePage = ({ getGenreList, getMovieByGenre, getMovies, movies, genres }) 
         <Link to='/other-movie'>
           <Button outline color='info'>Special Movie</Button>
         </Link>
-        <br/>
+        <br />
         <br />
       </Container>
     </>

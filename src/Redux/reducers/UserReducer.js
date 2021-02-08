@@ -1,10 +1,11 @@
-import { SIGN_UP, SIGN_IN, SIGN_OUT, FAILED } from "../types/UserPage";
+import { SIGN_UP, SIGN_IN, SIGN_OUT, FAILED, GET_USER } from "../types/UserPage";
 
 const initialState = {
   signUp: null,
   signIn: null,
   isAuthentificated: localStorage.getItem("token") ? true : false,
   token: "",
+  user: [],
 };
 
 const userReducer = (state = initialState, action) => {
@@ -29,12 +30,19 @@ const userReducer = (state = initialState, action) => {
         isAuthentificated: false,
       };
 
-      case FAILED :
-        return{
-          ...state,
-          token: undefined,
+    case FAILED:
+      return {
+        ...state,
+        token: undefined,
         isAuthentificated: false,
-        }
+      };
+
+    case GET_USER:
+      return {
+        ...state,
+        user: payload,
+        isAuthentificated: true,
+      };
     default:
       break;
   }

@@ -86,7 +86,7 @@ const Navbar = ({ auth, value, getSearchValue }) => {
                 <DropdownItem
                   toggle={toggle}
                   onClick={() => {
-                    dispatch(logout());
+                    dispatch(logout()); window.open("/", "_self")
                   }}
                 >
                   Sign Out

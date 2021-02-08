@@ -86,7 +86,7 @@ const DetailMoviePage = ({ auth, movie, review, cast, video, getDetailMovieById,
                 </Button>
               )}
               {auth ? (
-                <Button color="primary">Add To Watch List</Button>
+                <Button color="primary" onClick={addToWatchlist}>Add To Watch List</Button>
               ) :
                 (<Button color="primary" disabled>Add To Watch List</Button>)
               }
@@ -104,7 +104,7 @@ const DetailMoviePage = ({ auth, movie, review, cast, video, getDetailMovieById,
             <NavLink
               className={classnames({ active: activeTab === '1' })}
               onClick={() => { toggle('1'); }}
-              style={{cursor: 'pointer'}}
+              style={{ cursor: 'pointer' }}
             >
               Overview
           </NavLink>
@@ -113,7 +113,7 @@ const DetailMoviePage = ({ auth, movie, review, cast, video, getDetailMovieById,
             <NavLink
               className={classnames({ active: activeTab === '2' })}
               onClick={() => { toggle('2'); }}
-              style={{cursor: 'pointer'}}
+              style={{ cursor: 'pointer' }}
             >
               Character
           </NavLink>
@@ -122,7 +122,7 @@ const DetailMoviePage = ({ auth, movie, review, cast, video, getDetailMovieById,
             <NavLink
               className={classnames({ active: activeTab === '3' })}
               onClick={() => { toggle('3'); }}
-              style={{cursor: 'pointer'}}
+              style={{ cursor: 'pointer' }}
             >
               Review
           </NavLink>
@@ -207,33 +207,6 @@ const DetailMoviePage = ({ auth, movie, review, cast, video, getDetailMovieById,
                   </div>
                 </Media>
               </Media>) : ""}
-
-
-              {/* Review Movie */}
-              {/* <div className="mt-4">
-                {review !== [] ? review.map((review) => (
-                  <div sm="12" key={review.id}>
-                    <Media className="my-3">
-                      <Media className="mr-3" left middle >
-                        <img
-                          className="img-card-review"
-                          src={renderImg(review.author_details.avatar_path)}
-                          alt="Generic placeholder"
-                        />
-                      </Media>
-                      <Media body>
-                        <h4>{review.author}</h4>
-                        <ReactStars
-                          size={18}
-                          value={review.author_details.rating / 2}
-                          edit={false}
-                          isHalf={true} />
-                        <p>{review.content.slice(0, 450)} ...</p>
-                      </Media>
-                    </Media>
-                  </div>
-                )) : (<h3> no review </h3>)}
-              </div> */}
 
               {review.length === 0 ?
                 <div className="no-review py-2">
